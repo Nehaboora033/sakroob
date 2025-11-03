@@ -1,8 +1,18 @@
 import React from 'react'
 
-const Description = () => {
+interface DescriptionProps {
+  className?: string;
+  children: React.ReactNode;
+}
+
+
+const Description: React.FC<DescriptionProps> = ({ className = '', children, ...props }) => {
   return (
-    <h3>Description</h3>
+    <h3
+      {...props}
+      className={`${className} font-normal text-[16px]  text-darkblue leading-[150%]`}>
+      {children}
+    </h3>
   )
 }
 

@@ -1,8 +1,19 @@
 import React from 'react'
 
-const Button = () => {
+
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode,
+  className?: string,
+}
+
+const Button: React.FC<ButtonProps> = ({ className = '', children, ...props }) => {
+
   return (
-    <button>Button</button>
+    <button
+      {...props}
+      className={`${className} rounded-[93px] py-4 px-5 cursor-pointer`}>
+      {children}
+    </button>
   )
 }
 
