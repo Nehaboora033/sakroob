@@ -6,13 +6,40 @@ import { EyeOff, Eye } from 'lucide-react';
 import Button from '@/components/common/Button';
 import Link from 'next/link';
 import { Facebooksignup, Google } from '@/Utils/icons';
+import { useRouter } from 'next/navigation';
+import { auth, googleProvider } from '@/firebase/firebaseConfig';
+import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 
-const SignPage = () => {
+const SignPage: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const router = useRouter();
+
 
   // Toggle handler
   const toggleVisibility = () => {
     setIsVisible((prev) => !prev);
+  };
+
+  const handleSignup = async () => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      // alert("Account created successfully!");
+      router.push("/login");
+    } catch (error: unknown) {
+      alert((error as Error).message);
+    }
+  };
+
+  const handleGoogleSignup = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+      alert("Logged in with Google successfully!");
+      router.push("/"); // redirect to home or dashboard
+    } catch (error: unknown) {
+      alert((error as Error).message);
+    }
   };
 
   return (
@@ -31,11 +58,12 @@ const SignPage = () => {
         </div>
         <div className="flex flex-col gap-3 my-6">
           <Input placeholder="Name" name="name" type="text" />
-          <Input placeholder="Email" name="email" type="email" />
+          <Input placeholder="Email" name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
           {/* Password input with toggle */}
           <Input
             placeholder="Password"
             name="password"
+            value={password} onChange={(e) => setPassword(e.target.value)}
             type={isVisible ? 'text' : 'password'} >
             <button
               type="button"
@@ -45,7 +73,7 @@ const SignPage = () => {
             </button>
           </Input>
         </div>
-        <Button className='dark-blue text-white w-full mb-5'>
+        <Button className='dark-blue text-white w-full mb-5' onClick={handleSignup}>
           Sign up
         </Button>
         <Description className="text-center">
@@ -66,13 +94,13 @@ const SignPage = () => {
               <hr className='border-[#EBEBEB] flex-1' />
             </div>
             <div className='flex gap-3'>
-              <Button className='border border-[#E4EAF7] py-3! flex items-center justify-center gap-2 w-full text-darkblue bg-white'>
+              <Button className='border border-[#E4EAF7] py-3! flex items-center justify-center gap-2 w-full text-darkblue bg-white' onClick={handleGoogleSignup} >
                 <Google />
                 Google
               </Button>
               <Button className='border border-[#E4EAF7] py-3! flex items-center justify-center gap-2 w-full text-darkblue bg-white'>
                 <Facebooksignup />
-             Facebook
+                Facebook
               </Button>
             </div>
           </div>

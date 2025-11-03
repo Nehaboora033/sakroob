@@ -1,8 +1,17 @@
 import React from 'react'
 
-const Heading = () => {
+interface HeadingProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+const Heading: React.FC<HeadingProps> = ({ children, className = '', ...props }) => {
   return (
-    <h1>Heading</h1>
+    <h1
+      {...props}
+      className={`text-[60px] leading-[120%] font-bold text-darkblue ${className}`}>
+      {children}
+    </h1>
   )
 }
 

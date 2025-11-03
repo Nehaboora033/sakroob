@@ -7,7 +7,6 @@ interface InputProps {
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
-  error?: string;
   children?: React.ReactNode;
 }
 
@@ -18,7 +17,6 @@ const Input: React.FC<InputProps> = ({
   value,
   onChange,
   className = '',
-  error,
   children,
 }) => {
   return (
@@ -29,9 +27,7 @@ const Input: React.FC<InputProps> = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={`rounded-[120px] py-3.5 px-7 w-full bg-[#F4F8F7] placeholder:text-darkblue ${
-          error ? 'border-red-500' : 'border-[#FAFAFA]'
-        } border ${className} ${children ? 'pl-10' : ''}`}
+        className={`rounded-[120px] py-3.5 px-7 w-full bg-[#F4F8F7] placeholder:text-darkblue border border-[#FAFAFA] ${className}`}
       />
 
       {children && (
@@ -39,8 +35,6 @@ const Input: React.FC<InputProps> = ({
           {children}
         </div>
       )}
-
-      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
     </div>
   );
 };

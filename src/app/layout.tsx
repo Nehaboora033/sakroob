@@ -1,6 +1,9 @@
+// 'use client'
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-import "./globals.css";
+import './globals.css';
+import { AuthProvider } from "@/context/AuthContext";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -20,8 +23,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${montserrat.variable} font-sans`}>
-        {children}
+        <AuthProvider>
+          <ProtectedRoute>
+            {children}
+          </ProtectedRoute>
+        </AuthProvider>
       </body>
     </html>
   );
 }
+
+
+
+{/* // @ts-ignore: allow importing global CSS without type declarations */ }

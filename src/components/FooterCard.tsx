@@ -2,7 +2,9 @@ import React from 'react'
 
 const FooterCard = () => {
   return (
-    <div>FooterCard</div>
+    <div>FooterCard
+    
+    </div>
   )
 }
 

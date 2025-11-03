@@ -6,9 +6,35 @@ import { EyeOff, Eye } from 'lucide-react';
 import Button from '@/components/common/Button';
 import Link from 'next/link';
 import { Facebooksignup, Google } from '@/Utils/icons';
+import { auth, googleProvider } from '@/firebase/firebaseConfig';
+import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { useRouter } from 'next/navigation';
 
-const LoginPage = () => {
+const LoginPage: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const router = useRouter();
+
+  const handleLogin = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      // alert("Login successful!");
+      router.push("/");
+    } catch (error: unknown) {
+      alert((error as Error).message);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+      alert("Logged in successfully with Google!");
+      router.push("/"); // or redirect wherever you want (like /dashboard)
+    } catch (error: unknown) {
+      alert((error as Error).message);
+    }
+  };
 
   // Toggle handler
   const toggleVisibility = () => {
@@ -30,12 +56,12 @@ const LoginPage = () => {
           </Description>
         </div>
         <div className="flex flex-col gap-3 my-6">
-          <Input placeholder="Email address" name="email" type="email" />
+          <Input placeholder="Email address" name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
           {/* Password input with toggle */}
           <Input
             placeholder="Password"
             name="password"
-
+            value={password} onChange={(e) => setPassword(e.target.value)}
             type={isVisible ? 'text' : 'password'} >
             <button
               type="button"
@@ -50,7 +76,7 @@ const LoginPage = () => {
             </Description>
           </Link>
         </div>
-        <Button className='dark-blue text-white w-full mb-5'>
+        <Button className='dark-blue text-white w-full mb-5' onClick={handleLogin}>
           Login in
         </Button>
         <Description className="text-center">
@@ -71,7 +97,7 @@ const LoginPage = () => {
               <hr className='border-[#EBEBEB] flex-1' />
             </div>
             <div className='flex gap-3'>
-              <Button className='border border-[#E4EAF7] py-3! flex items-center justify-center gap-2 w-full text-darkblue bg-white'>
+              <Button className='border border-[#E4EAF7] py-3! flex items-center justify-center gap-2 w-full text-darkblue bg-white' onClick={handleGoogleLogin}>
                 <Google />
                 Google
               </Button>

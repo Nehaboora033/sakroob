@@ -1,8 +1,17 @@
 import React from 'react'
 
-const SubHeading = () => {
+interface SubHeadingProps {
+  className?: string;
+  children: React.ReactNode;
+}
+
+const SubHeading: React.FC<SubHeadingProps> = ({ className, children, ...props }) => {
   return (
-    <h2>SubHeading</h2>
+    <h1
+      {...props}
+      className={`text-[48px] leading-[120%] font-bold text-darkblue ${className}`}>
+      {children}
+    </h1>
   )
 }
 
