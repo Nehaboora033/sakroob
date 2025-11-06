@@ -219,9 +219,9 @@ export const Increase = () => (
 
 export const Eye = () => (
     <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0.75 5.75C0.75 5.75 5.227 0.75 10.75 0.75C16.273 0.75 20.75 5.75 20.75 5.75" stroke="#3F566B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M20.294 10.795C20.598 11.221 20.75 11.435 20.75 11.75C20.75 12.066 20.598 12.279 20.294 12.705C18.928 14.621 15.439 18.75 10.75 18.75C6.06 18.75 2.572 14.62 1.206 12.705C0.902 12.279 0.75 12.065 0.75 11.75C0.75 11.434 0.902 11.221 1.206 10.795C2.572 8.879 6.061 4.75 10.75 4.75C15.44 4.75 18.928 8.88 20.294 10.795Z" stroke="#3F566B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M13.75 11.75C13.75 10.9544 13.4339 10.1913 12.8713 9.62868C12.3087 9.06607 11.5456 8.75 10.75 8.75C9.95435 8.75 9.19129 9.06607 8.62868 9.62868C8.06607 10.1913 7.75 10.9544 7.75 11.75C7.75 12.5456 8.06607 13.3087 8.62868 13.8713C9.19129 14.4339 9.95435 14.75 10.75 14.75C11.5456 14.75 12.3087 14.4339 12.8713 13.8713C13.4339 13.3087 13.75 12.5456 13.75 11.75Z" stroke="#3F566B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M0.75 5.75C0.75 5.75 5.227 0.75 10.75 0.75C16.273 0.75 20.75 5.75 20.75 5.75" stroke="#3F566B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M20.294 10.795C20.598 11.221 20.75 11.435 20.75 11.75C20.75 12.066 20.598 12.279 20.294 12.705C18.928 14.621 15.439 18.75 10.75 18.75C6.06 18.75 2.572 14.62 1.206 12.705C0.902 12.279 0.75 12.065 0.75 11.75C0.75 11.434 0.902 11.221 1.206 10.795C2.572 8.879 6.061 4.75 10.75 4.75C15.44 4.75 18.928 8.88 20.294 10.795Z" stroke="#3F566B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M13.75 11.75C13.75 10.9544 13.4339 10.1913 12.8713 9.62868C12.3087 9.06607 11.5456 8.75 10.75 8.75C9.95435 8.75 9.19129 9.06607 8.62868 9.62868C8.06607 10.1913 7.75 10.9544 7.75 11.75C7.75 12.5456 8.06607 13.3087 8.62868 13.8713C9.19129 14.4339 9.95435 14.75 10.75 14.75C11.5456 14.75 12.3087 14.4339 12.8713 13.8713C13.4339 13.3087 13.75 12.5456 13.75 11.75Z" stroke="#3F566B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 )
 
@@ -298,5 +298,13 @@ export const Facebooksignup = () => (
             </clipPath>
         </defs>
     </svg >
+
+)
+
+export const Product_Arrow = () => (
+    <svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10.0874 1L16 6.90682L10.0874 12.8136" stroke="#112D49" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M1.00029 6.90674H15.5459" stroke="#112D49" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
 
 )
