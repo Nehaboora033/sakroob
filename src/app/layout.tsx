@@ -1,4 +1,3 @@
-// 'use client'
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import './globals.css';
@@ -35,4 +34,3 @@ export default function RootLayout({
 
 
 
-{/* // @ts-ignore: allow importing global CSS without type declarations */ }

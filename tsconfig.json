@@ -35,8 +35,7 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts",
-    "src",
-    "globals.d.ts"
+    "src/global.d.ts"
   ],
   "exclude": [
     "node_modules"
