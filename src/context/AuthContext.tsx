@@ -14,12 +14,26 @@ const AuthContext = createContext<AuthContextType>({
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-    const [user, setUser] = useState<User | null>(null);
-    const [loading, setLoading] = useState(true);
+    // ✅ Initialize user directly from localStorage
+    const [user, setUser] = useState<User | null>(() => {
+        if (typeof window !== "undefined") {
+            const savedUser = localStorage.getItem("user");
+            return savedUser ? JSON.parse(savedUser) : null;
+        }
+        return null;
+    });
+
+    const [loading, setLoading] = useState(!user); // only load if no user yet
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser);
+            if (currentUser) {
+                localStorage.setItem("user", JSON.stringify(currentUser));
+                setUser(currentUser);
+            } else {
+                localStorage.removeItem("user");
+                setUser(null);
+            }
             setLoading(false);
         });
 

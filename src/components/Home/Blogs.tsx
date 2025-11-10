@@ -9,6 +9,7 @@ import controller from '../../assets/png/controller.png'
 import Image, { StaticImageData } from 'next/image'
 import tools from '../../assets/png/five tools.png'
 import nas from '../../assets/png/miniNAS.png'
+import Button from '../common/Button'
 
 interface blogs {
   title: string;
@@ -36,18 +37,10 @@ export const Blogs_Data: blogs[] = [
     link: '/',
     img: tools,
   },
-  // {
-  //   title: 'Inside a Raspberry Pi Retro Console',
-  //   description: 'Step-by-step log of building a retro game machine.',
-  //   linktext: 'View Build Log',
-  //   link: '/',
-  // },
-
 ]
-
 const Blogs: React.FC = () => {
   return (
-    <div className='mt-[132px]'>
+    <div className='my-[132px]'>
       <Container className='max-w-[1396px]!'>
         <SubHeading className='text-center max-w-[618px] mx-auto mb-16'>
           Blog, Guides, Build Logs & More
@@ -55,7 +48,7 @@ const Blogs: React.FC = () => {
         <div className='grid gap-6 mb-14'>
           <div className='grid grid-cols-2 gap-6 '>
             {Blogs_Data.map((item, index) => (
-              <div className={`grey-bg rounded-lg h-[335px] p-8 relative ${index === 0 ? 'grey-bg ' : 'light-blue-bg'}`} key={index}>
+              <div className={`grey-bg rounded-lg h-[335px] overflow-hidden p-8 relative ${index === 0 ? 'grey-bg ' : 'light-blue-bg'}`} key={index}>
                 <div className={`${index === 0 ? 'max-w-[407px] w-full' : 'max-w-[360px] w-full flex justify-center flex-col'}`} >
                   <SubHeading className='text-[32px]! mb-3 '>
                     {item.title}
@@ -70,7 +63,7 @@ const Blogs: React.FC = () => {
                     <Product_Arrow />
                   </Link>
                 </div>
-                <Image src={item.img} alt='item.img' width={300} height={300} className={`rounded-md mx-auto absolute ${index === 0 ? 'bottom-2.5 right-0' : 'top-[18px] -rotate-90 right-0 scale-[1.1]'}`} />
+                <Image src={item.img} alt='item.img' width={300} height={300} className={`rounded-md mx-auto absolute ${index === 0 ? 'bottom-2.5 right-0' : 'top-[18px] -rotate-90 right-2.5 scale-[1.1]'}`} />
               </div>
             ))}
           </div>
@@ -91,11 +84,11 @@ const Blogs: React.FC = () => {
                 <Product_Arrow />
               </Link>
             </div>
-
           </div>
+          <Button className='dark-blue max-w-[196px] text-white text-[16px] font-medium mx-auto'>
+            View All Blog Posts
+          </Button>
         </div>
-
-
       </Container >
 
     </div >

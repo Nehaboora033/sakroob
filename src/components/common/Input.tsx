@@ -31,7 +31,7 @@ const Input: React.FC<InputProps> = ({
       />
 
       {children && (
-        <div className="absolute inset-y-0 right-4 flex items-center">
+        <div className="absolute inset-y-0 right-2 flex items-center">
           {children}
         </div>
       )}
