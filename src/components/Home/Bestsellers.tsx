@@ -58,7 +58,7 @@ const Bestsellers: React.FC = () => {
     return (
         <div className="mt-[132px] ">
             <Container className='relative'>
-                <SubHeading className="text-center pb-[116px]">
+                <SubHeading className="text-center ">
                     Bestsellers
                 </SubHeading>
                 <button
@@ -76,12 +76,14 @@ const Bestsellers: React.FC = () => {
                     navigation={{
                         prevEl: '.prevbtn1',
                         nextEl: '.nextbtn1',
+
                     }}
+                    className='bestseller-wraper'
                 >
                     {Bestseller_Data.map((item, index) => (
                         <SwiperSlide key={index} >
 
-                            <div className={`border  border-[#112D4914] rounded-lg h-[536px] p-4 flex flex-col gap-5 shadow-model `}>
+                            <div className={`border  border-[#112D4914] rounded-lg h-[536px] p-4 flex flex-col gap-5 shadow-model`}>
 
                                 <div className={`h-1/2  rounded-lg flex justify-center relative ${index % 2 !== 0 ? ' bg-cable-bg' : 'bg-grey'}`}>
                                     <div className='bg-[#D7DCE2] absolute top-0 z-2 right-0 m-2.5 cursor-pointer flex items-center justify-center rounded-full size-8'>
@@ -98,6 +100,7 @@ const Bestsellers: React.FC = () => {
                                         <Description>
                                             Commodo egestas etiam arcu curabitur aliquam volutpat a gravida.
                                         </Description>
+
                                     </div>
                                     <div className='flex justify-betwee flex-col gap-[25px] '>
                                         <div className='flex items-center justify-between '>

@@ -16,6 +16,11 @@ body {
     --shadow-swipercard: 0px 2px 20px 0px #112D491A;
     --shadow-model: 0px 0px 11.4px 0px #73A4E033;
 
+
+
+
+
+
 }
 
 
@@ -51,16 +56,22 @@ body {
     color: var(--color-text-blue);
 }
 
-.swiper-wrapper {
-    padding-top: 20px;
+.bestseller-wraper .swiper-wrapper {
+    padding-top: 116px;
     padding-bottom: 20px;
 
 }
 
-.swiper {
-    overflow-y: visible !important;
+.custom-pagination .swiper-pagination-bullet {
+    width: 20px;
+    height: 8px;
+    border-radius: 4px;
+    background: #112D49;
+    opacity: 0.5;
+    margin: 0 4px !important;
 }
 
-.swiper-wrapper {
-    overflow-y: visible !important;
+.custom-pagination .swiper-pagination-bullet-active {
+    width: 40px;
+    opacity: 1;
 }
