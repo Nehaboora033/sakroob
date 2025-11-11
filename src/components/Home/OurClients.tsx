@@ -14,14 +14,14 @@ import quotationmarks from '../../assets/png/quotation marks.png'
 import { SwiperArrow } from '@/Utils/icons'
 import { Navigation } from 'swiper/modules'
 
-interface clientsDetails {
+interface clientsDetailsProps {
   data: string;
   name: string;
   role: string;
   img: StaticImageData;
 }
 
-export const Clients_Data: clientsDetails[] = [
+export const Clients_Data: clientsDetailsProps[] = [
   {
     data: 'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth,',
     name: 'William gate',

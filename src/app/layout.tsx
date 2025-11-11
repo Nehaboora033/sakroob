@@ -3,6 +3,8 @@ import { Montserrat } from "next/font/google";
 import './globals.css';
 import { AuthProvider } from "@/context/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import Header from "@/components/common/Header";
+import Footer from "@/components/common/Footer";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -27,7 +29,9 @@ export default function RootLayout({
       <body className={`${montserrat.variable} font-sans`}>
         <AuthProvider>
           <ProtectedRoute>
+            <Header />
             {children}
+            <Footer />
           </ProtectedRoute>
         </AuthProvider>
       </body>

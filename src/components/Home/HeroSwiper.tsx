@@ -9,12 +9,12 @@ import Button from '../common/Button';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css/pagination';
 
-interface SwiperHeading {
+interface SwiperHeadingProps {
   heading: string,
   description: string,
 }
 
-export const Swiper_Details: SwiperHeading[] = [
+export const Swiper_Details: SwiperHeadingProps[] = [
   {
     heading: 'Where Tinkerers Bring Ideas Alive',
     description: 'Explore niche tech gear, DIY kits, and pro tools — built for creators, gamers, and engineers.',

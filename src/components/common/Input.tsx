@@ -29,7 +29,6 @@ const Input: React.FC<InputProps> = ({
         onChange={onChange}
         className={`rounded-[120px] py-3.5 px-7 w-full bg-[#F4F8F7] placeholder:text-darkblue border border-[#FAFAFA] ${className}`}
       />
-
       {children && (
         <div className="absolute inset-y-0 right-2 flex items-center">
           {children}

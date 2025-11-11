@@ -15,13 +15,13 @@ import Button from '../common/Button';
 import { ProductCart, SwiperArrow, ProductLike } from '@/Utils/icons';
 import { Navigation } from 'swiper/modules';
 
-interface Bestseller {
+interface BestsellerProps {
     title: string;
     price: number;
     model: StaticImageData;
 }
 
-export const Bestseller_Data: Bestseller[] = [
+export const Bestseller_Data: BestsellerProps[] = [
     {
         title: 'Vortex Gaming PC',
         price: 249.99,

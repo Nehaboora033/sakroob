@@ -14,18 +14,18 @@ import HeroSwiper from './HeroSwiper'
 
 
 
-interface Service {
+interface ServiceProps {
   title: string,
   data: string,
   svg: React.FC<React.SVGProps<SVGSVGElement>>,
 }
 
-interface Products {
+interface ProductsProps {
   title: string,
   svg: React.FC<React.SVGProps<SVGSVGElement>>,
 }
 
-export const Products_Data: Products[] = [
+export const Products_Data: ProductsProps[] = [
   {
     title: 'Game',
     svg: Video_Game,
@@ -72,7 +72,7 @@ export const Products_Data: Products[] = [
   },
 ]
 
-export const Hero_Services: Service[] = [
+export const Hero_Services: ServiceProps[] = [
   {
     title: 'EXPRESS Delivery',
     data: 'Order Now',
@@ -100,7 +100,7 @@ export const Hero_Services: Service[] = [
   },
 ]
 
-const Hero = () => {
+const Hero: React.FC = () => {
   return (
     <>
       <div>

@@ -2,6 +2,7 @@
 
 body {
     font-family: var(--font-montserrat);
+    user-select: none;
 }
 
 
@@ -15,14 +16,9 @@ body {
     --shadow-login: 0px 10px 30px 0px #0000000D;
     --shadow-swipercard: 0px 2px 20px 0px #112D491A;
     --shadow-model: 0px 0px 11.4px 0px #73A4E033;
-
-
-
-
-
+   
 
 }
-
 
 .dark-blue {
     background-color: var(--color-dark-blue);

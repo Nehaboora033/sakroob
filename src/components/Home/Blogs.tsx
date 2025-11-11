@@ -11,7 +11,7 @@ import tools from '../../assets/png/five tools.png'
 import nas from '../../assets/png/miniNAS.png'
 import Button from '../common/Button'
 
-interface blogs {
+interface blogsProps {
   title: string;
   description: string;
   linktext: string;
@@ -20,7 +20,7 @@ interface blogs {
 
 }
 
-export const Blogs_Data: blogs[] = [
+export const Blogs_Data: blogsProps[] = [
   {
     title: 'How to Build a Mini NAS',
     description: 'Learn to build your own network storage system with simple components.',

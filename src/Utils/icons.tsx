@@ -1,4 +1,4 @@
-import { SVGProps } from "react"
+import React, { SVGProps } from "react"
 
 export const Video_Game = () => (
     <svg
@@ -70,33 +70,41 @@ export const Monitor = () => (
 )
 
 
-export const Search = () => (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const Search: React.FC<React.SVGProps<SVGSVGElement>> = ({ className }) => (
+    <svg
+        className={className}
+        width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g opacity="0.7">
             <path d="M8.31318 15.6264C12.3521 15.6264 15.6264 12.3521 15.6264 8.31318C15.6264 4.27422 12.3521 1 8.31318 1C4.27422 1 1 4.27422 1 8.31318C1 12.3521 4.27422 15.6264 8.31318 15.6264Z" stroke="#112D49" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M13.4756 13.4754L18.5002 18.5" stroke="#112D49" strokeWidth="2" stroke-miterlimit="10" strokeLinecap="round" />
+            <path d="M13.4756 13.4754L18.5002 18.5" stroke="#112D49" strokeWidth="2" strokeMiterlimit="10" strokeLinecap="round" />
         </g>
     </svg>
 
 
 )
 
-export const Profile = () => (
-    <svg width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const Profile: React.FC<React.SVGProps<SVGSVGElement>> = ({ className }) => (
+    <svg
+        className={className}
+        width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 21.5022C1.50108 19.4926 2.64889 17.7035 4.26668 16.4104C5.88446 15.1172 7.88249 14.3918 9.95308 14.3457C12.0237 14.2997 14.052 14.9356 15.7256 16.1556C17.3993 17.3755 18.6255 19.1119 19.2154 21.0972" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M10.5621 10.3892H9.64835C8.50347 10.3892 7.40548 9.93443 6.59593 9.12487C5.78638 8.31532 5.33157 7.21733 5.33157 6.07246V5.67733C5.33157 4.43683 5.82436 3.24711 6.70153 2.36994C7.5787 1.49277 8.7684 0.999995 10.0089 0.999995C10.6493 0.999345 11.2835 1.12501 11.8752 1.36976C12.4669 1.61452 13.0046 1.97357 13.4574 2.42638C13.9102 2.87918 14.2693 3.41684 14.514 4.00858C14.7588 4.60032 14.8844 5.23452 14.8838 5.87488V6.07246C14.8838 7.21733 14.429 8.31532 13.6194 9.12487C12.8099 9.93443 11.7119 10.3892 10.567 10.3892H10.5621Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 )
 
-export const Like = () => (
-    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const Like: React.FC<React.SVGProps<SVGSVGElement>> = ({ className }) => (
+    <svg
+        className={className}
+        width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M22.3674 3.93242C21.1407 3.18909 19.6876 2.8757 18.2509 3.04468C16.8142 3.21366 15.4809 3.85475 14.474 4.86078L13.0034 6.26167H12.9689L11.5154 4.86078C10.5086 3.85475 9.17532 3.21366 7.7386 3.04468C6.30187 2.8757 4.84874 3.18909 3.62212 3.93242C2.90527 4.38164 2.30096 4.97986 1.85314 5.68356C1.40531 6.38726 1.12525 7.17873 1.03336 8.00035C0.941459 8.82198 1.04003 9.65309 1.32189 10.4332C1.60375 11.2133 2.06182 11.9228 2.66275 12.5101L12.9287 23L13.1355 22.7999L13.1987 22.861L23.344 12.5101C23.9441 11.9217 24.401 11.2112 24.6815 10.4304C24.962 9.64954 25.059 8.81799 24.9654 7.9963C24.8719 7.1746 24.5901 6.38345 24.1407 5.68044C23.6912 4.97742 23.0854 4.38026 22.3674 3.93242V3.93242Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 
 )
 
-export const Cart = () => (
-    <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const Cart: React.FC<React.SVGProps<SVGSVGElement>> = ({ className }) => (
+    <svg
+        className={className}
+        width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M22.819 17.579H9.11499L6.20312 5.2197H25.2365L22.819 17.579Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M12.1341 22.4831C12.5437 22.4831 12.8757 22.1511 12.8757 21.7416C12.8757 21.332 12.5437 21 12.1341 21C11.7246 21 11.3926 21.332 11.3926 21.7416C11.3926 22.1511 11.7246 22.4831 12.1341 22.4831Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M19.5502 22.4831C19.9597 22.4831 20.2917 22.1511 20.2917 21.7416C20.2917 21.332 19.9597 21 19.5502 21C19.1406 21 18.8086 21.332 18.8086 21.7416C18.8086 22.1511 19.1406 22.4831 19.5502 22.4831Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -106,8 +114,10 @@ export const Cart = () => (
 
 )
 
-export const Dropdown = () => (
-    <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const DropdownIcon: React.FC<React.SVGProps<SVGSVGElement>> = ({ className }) => (
+    <svg
+        className={className}
+        width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M2.12891 3.83243L5.10968 6.8132L8.09045 3.83243" stroke="white" strokeWidth="0.851649" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 )
