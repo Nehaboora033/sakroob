@@ -9,7 +9,7 @@ const Heading: React.FC<HeadingProps> = ({ children, className = '', ...props })
   return (
     <h1
       {...props}
-      className={`text-[60px] leading-[120%] font-bold text-darkblue ${className}`}>
+      className={`sm:text-[60px] text-[40px] leading-[120%] font-bold text-darkblue ${className}`}>
       {children}
     </h1>
   )

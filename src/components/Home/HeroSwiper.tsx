@@ -58,11 +58,11 @@ const HeroSwiper: React.FC = () => {
                 <Description className='text-center mb-5 max-w-[460px] mx-auto'>
                   {item.description}
                 </Description>
-                <div className='flex gap-[18px] justify-center'>
-                  <Button className='bg-dark-blue text-white'>
+                <div className='flex gap-[18px] justify-center flex-wrap '>
+                  <Button className='bg-dark-blue text-white border border-dark-blue'>
                     Browse Products
                   </Button>
-                  <Button className='border border-dark-blue'>
+                  <Button className='border border-dark-blue '>
                     Starter Kits
                   </Button>
                 </div>

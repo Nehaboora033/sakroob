@@ -3,10 +3,10 @@ import React from 'react'
 import logo from '../../assets/png/header-logo.png'
 import Image from 'next/image'
 import Link from 'next/link';
-import { Cart, Like, Profile, Search } from '@/Utils/icons';
-import Input from './Input';
+import { Cart, Like, Profile } from '@/Utils/icons';
 import Dropdown from './Dropdown';
 import profile from '../../assets/png/customerprofile.png'
+import SearchBar from './SearchBar';
 
 interface Navlinks {
   name: string;
@@ -98,10 +98,9 @@ const Header: React.FC = () => {
               <div className='bg-[#D9D9D9] w-px h-8 '></div>
               <Like className='cursor-pointer' />
               <div className='bg-[#D9D9D9] w-px h-8'></div>
-              <Link  href={'/cart'}>
+              <Link href={'/cart'}>
                 <Cart className='cursor-pointer' />
               </Link>
-
             </div>
             <Image src={profile} alt='profile' className='cursor-pointer' />
           </div>
@@ -109,13 +108,7 @@ const Header: React.FC = () => {
       </div>
       <div className="bg-[#F1F6FC] h-[74px] flex items-center justify-center">
         <div className="text-center ">
-          <Input
-            type="search"
-            placeholder="Search"
-            name="search"
-            className="w-[488px]! border border-[#112D491A] shadow-swipercard">
-            <Search className='absolute right-5' />
-          </Input>
+          <SearchBar />
         </div>
       </div>
     </div>

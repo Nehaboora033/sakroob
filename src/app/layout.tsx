@@ -1,10 +1,11 @@
+
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import './globals.css';
 import { AuthProvider } from "@/context/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
-import Header from "@/components/common/Header";
-import Footer from "@/components/common/Footer";
+import LayoutClient from "@/components/Layoutclient";
+
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -24,14 +25,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
   return (
     <html lang="en">
       <body className={`${montserrat.variable} font-sans`}>
         <AuthProvider>
           <ProtectedRoute>
-            <Header />
-            {children}
-            <Footer />
+            <LayoutClient>
+              {children}
+            </LayoutClient>
           </ProtectedRoute>
         </AuthProvider>
       </body>

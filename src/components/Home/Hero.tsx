@@ -106,7 +106,7 @@ const Hero: React.FC = () => {
       <div>
         <Swiper
           spaceBetween={16}
-          slidesPerView={6.5}
+          // slidesPerView={6.5}
           loop={true}
           modules={[Autoplay]}
           speed={4000} // how long one full slide transition takes (higher = slower)
@@ -115,9 +115,25 @@ const Hero: React.FC = () => {
             disableOnInteraction: false, // keep autoplay even after user interacts
           }}
           allowTouchMove={false}
-          className='my-6'
+          breakpoints={{
+            0: {
+              slidesPerView: 1.5,
+            },
+            480: {
+              slidesPerView: 2.5, // mobile
+            },
+            768: {
+              slidesPerView: 3, // small tablet
+            },
+            992: {
+              slidesPerView: 4.5, // tablet
+            },
+            1280: {
+              slidesPerView: 6.5, // desktop
+            },
+          }}
 
-        >
+          className='my-6' >
           {Products_Data.map((item, index) => (
             <SwiperSlide className='' key={index}>
               <div className='border border-[#112D491A] p-4 flex  items-center gap-4 rounded-lg  w-full'>
@@ -135,7 +151,7 @@ const Hero: React.FC = () => {
       <HeroSwiper />
       <div className='pb-48 max-w-[1380px] mx-auto px-3 pt-[67px]'>
 
-        <div className='bg-light-blue py-[43px] px-[72px] flex gap-9 mt-6'>
+        <div className='bg-light-blue py-[43px] px-[72px] flex gap-9 mt-6 '>
           {Hero_Services.map((item, index) => (
             <div className={`w-fit  flex items-center gap-1.5  ${index !== Hero_Services.length - 1 ? 'pr-5' : 'p-0'
               }`}
