@@ -7,8 +7,9 @@ import { Cart, Like, Profile } from '@/Utils/icons';
 import Dropdown from './Dropdown';
 import profile from '../../assets/png/customerprofile.png'
 import SearchBar from './SearchBar';
+import { useCart } from '@/app/cart/CartContext';
 
-interface Navlinks {
+interface NavlinksProps {
   name: string;
   link: string;
 }
@@ -24,7 +25,7 @@ export interface DropdownItem {
   options: DropdownOption[];
 }
 
-export const Navlinks_Data: Navlinks[] = [
+export const Navlinks_Data: NavlinksProps[] = [
   {
     name: 'About',
     link: '/about',
@@ -65,6 +66,7 @@ export const DropDown_Data: DropdownItem[] = [
 ];
 
 const Header: React.FC = () => {
+  const { cart } = useCart();
   return (
     <div>
       <div className='bg-dark-blue h-20 '>
@@ -98,8 +100,14 @@ const Header: React.FC = () => {
               <div className='bg-[#D9D9D9] w-px h-8 '></div>
               <Like className='cursor-pointer' />
               <div className='bg-[#D9D9D9] w-px h-8'></div>
-              <Link href={'/cart'}>
-                <Cart className='cursor-pointer' />
+              <Link href={"/cart"} className="relative">
+                <Cart className="cursor-pointer" />
+
+                {cart.length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-white text-dark-blue text-[12px] rounded-full w-5 h-5 flex items-center justify-center">
+                    {cart.reduce((total: number, item) => total + item.quantity, 0)}
+                  </span>
+                )}
               </Link>
             </div>
             <Image src={profile} alt='profile' className='cursor-pointer' />

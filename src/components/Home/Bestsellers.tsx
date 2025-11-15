@@ -15,6 +15,7 @@ import Container from '@/components/common/Container';
 import SubHeading from '@/components/common/SubHeading';
 import Description from '@/components/common/Description';
 import Button from '@/components/common/Button';
+import { useCart } from '@/app/cart/CartContext';
 
 interface BestsellerProps {
     title: string;
@@ -70,6 +71,7 @@ export const Bestseller_Data: BestsellerProps[] = [
 ];
 
 const Bestsellers: React.FC = () => {
+    const { addToCart } = useCart();
     return (
         <div className="my-[132px] ">
             <Container className='relative'>
@@ -77,28 +79,34 @@ const Bestsellers: React.FC = () => {
                     Bestsellers
                 </SubHeading>
                 <button
-                    className="prevbtn1 absolute top-[60%] -left-[50px] rounded-full border cursor-pointer border-dark-blue size-[38px] flex items-center justify-center
+                    className="prevbtn1 absolute top-[60%] -left-[50px] rounded-full border cursor-pointer border-dark-blue size-[38px] xl:flex hidden items-center justify-center
                              text-dark-blue hover:bg-dark-blue hover:text-white transition-colors duration-150 ease-in-out">
                     <SwiperArrow />
                 </button>
-                <button className='nextbtn1 absolute -right-[50px] group top-[60%] hover:bg-dark-blue  rotate-180 rounded-full border cursor-pointer text-dark-blue hover:text-white border-dark-blue size-[38px] flex items-center  transition-colors duration-150 ease-in-out justify-center'>
+                <button className='nextbtn1 absolute -right-[50px] group top-[60%] hover:bg-dark-blue  rotate-180 rounded-full border cursor-pointer text-dark-blue hover:text-white border-dark-blue size-[38px] hidden xl:flex items-center  transition-colors duration-150 ease-in-out justify-center'>
                     <SwiperArrow />
                 </button>
                 <Swiper
                     spaceBetween={24}
-                    slidesPerView={3}
+
                     modules={[Navigation]}
                     navigation={{
                         prevEl: '.prevbtn1',
                         nextEl: '.nextbtn1',
 
                     }}
+                    breakpoints={{
+                        0: { slidesPerView: 1 },
+                        640: { slidesPerView: 2 },
+                        1024: { slidesPerView: 3 },
+                    }}
+
                     className='bestseller-wraper' >
                     {Bestseller_Data.map((item, index) => (
                         <SwiperSlide key={index} >
-                            <div className={`border  border-[#112D4914] rounded-lg h-[536px] p-4 flex flex-col gap-5 shadow-model`}>
+                            <div className={`border  border-[#112D4914] rounded-lg h-[536px]  p-4 flex flex-col gap-5 shadow-model`}>
                                 <div className={`h-1/2  rounded-lg flex justify-center relative ${index % 2 !== 0 ? ' bg-cable-bg' : 'bg-grey'}`}>
-                                    <div className='bg-[#D7DCE2] absolute top-0 z-2 right-0 m-2.5 cursor-pointer flex items-center justify-center rounded-full size-8'>
+                                    <div className='bg-[#D7DCE2] absolute bottom-0 z-2 right-0 m-2.5 cursor-pointer flex items-center justify-center rounded-full size-8'>
                                         <ProductLike />
                                     </div>
                                     <Image src={item.model} alt='model'
@@ -120,14 +128,24 @@ const Bestsellers: React.FC = () => {
                                             </h4>
                                             <Image src={ratingstars} alt='rating stars' />
                                         </div>
-                                        <div className='flex justify-between items-center'>
+                                        <div className='flex justify-between items-center '>
                                             <Link href={`/products/${item.id}`}>
-                                                <Button className='border w-[260px] '>
+                                                <Button className='border'>
                                                     Shop Now
                                                 </Button>
                                             </Link>
 
-                                            <div className='rounded-full bg-sky-blue size-12 flex items-center justify-center'>
+                                            <div
+                                                className='rounded-full bg-sky-blue size-12 flex items-center justify-center cursor-pointer'
+                                                onClick={() =>
+                                                    addToCart({
+                                                        id: item.id,
+                                                        title: item.title,
+                                                        price: item.price,
+                                                        image: item.model.src,
+                                                        quantity: 1
+                                                    })
+                                                } >
                                                 <ProductCart />
                                             </div>
                                         </div>

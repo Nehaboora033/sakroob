@@ -25,11 +25,15 @@ const Dropdown: React.FC<DropdownProps> = ({ options, placeholder = 'Select' }) 
   };
 
   return (
-    <div className="relative inline-block text-left">
+    <div
+      className="relative inline-block text-left"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
       {/* Button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1.5 text-white rounded-lg cursor-pointer focus:outline-none">
+        className="flex items-center gap-1.5 text-white rounded-lg cursor-pointer focus:outline-none"
+      >
         <span>{selected || placeholder}</span>
         <DropdownIcon
           className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
@@ -43,17 +47,20 @@ const Dropdown: React.FC<DropdownProps> = ({ options, placeholder = 'Select' }) 
             <React.Fragment key={index}>
               <button
                 onClick={() => handleSelect(option)}
-                className="block w-full whitespace-nowrap text-left px-4 py-2 text-darkblue cursor-pointer hover:bg-gray-100 transition-all duration-150 ease-in-out">
+                className="block w-full whitespace-nowrap text-left px-4 py-2 text-dark-blue cursor-pointer hover:bg-gray-100 transition-all duration-150 ease-in-out"
+              >
                 {option.name}
               </button>
+
               {/* Gradient Divider — skip after last option */}
               {index !== options.length - 1 && (
                 <div
-                  className="h-px w-full cursor-pointer"
+                  className="h-px w-full"
                   style={{
                     background:
                       'linear-gradient(90deg, rgba(17, 45, 73, 0) 0%, #112D49 52.88%, rgba(17, 45, 73, 0) 100%)',
-                  }}></div>
+                  }}
+                ></div>
               )}
             </React.Fragment>
           ))}

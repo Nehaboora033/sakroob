@@ -14,14 +14,14 @@ import quotationmarks from '../../assets/png/quotation marks.png'
 import { SwiperArrow } from '@/Utils/icons'
 import { Navigation } from 'swiper/modules'
 
-interface clientsDetailsProps {
+interface ClientsDetailsProps {
   data: string;
   name: string;
   role: string;
   img: StaticImageData;
 }
 
-export const Clients_Data: clientsDetailsProps[] = [
+export const Clients_Data: ClientsDetailsProps[] = [
   {
     data: 'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth,',
     name: 'William gate',
@@ -58,24 +58,28 @@ const OurClients: React.FC = () => {
           What our client’s says
         </SubHeading>
         <button
-          className="prevbtn absolute top-[63%] -left-[30px] rounded-full border cursor-pointer border-dark-blue size-[38px] flex items-center justify-center
+          className="prevbtn min-[1230px]:flex hidden absolute top-[63%] -left-[30px] rounded-full border cursor-pointer border-dark-blue size-[38px] items-center justify-center
              text-dark-blue hover:bg-dark-blue hover:text-white transition-colors duration-150 ease-in-out">
           <SwiperArrow />
         </button>
-        <button className='nextbtn absolute -right-[30px] group top-[63%] hover:bg-dark-blue  rotate-180 rounded-full border cursor-pointer text-dark-blue hover:text-white border-dark-blue size-[38px] flex items-center  transition-colors duration-150 ease-in-out justify-center'>
+        <button className='nextbtn min-[1230px]:flex hidden  absolute -right-[30px] group top-[63%] hover:bg-dark-blue  rotate-180 rounded-full border cursor-pointer text-dark-blue hover:text-white border-dark-blue size-[38px] items-center  transition-colors duration-150 ease-in-out justify-center'>
           <SwiperArrow />
         </button>
         <Swiper
-          spaceBetween={24}
-          slidesPerView={2}
+          spaceBetween={20}
           modules={[Navigation]}
           navigation={{
             prevEl: '.prevbtn',
             nextEl: '.nextbtn',
-          }} >
+          }}
+          breakpoints={{
+            640: { slidesPerView: 1 },      // tablet portrait
+            768: { slidesPerView: 2 },      // tablet landscape
+          }}
+        >
           {Clients_Data.map((item, index) => (
-            <SwiperSlide  key={index}>
-              <div className='rounded-lg hover:shadow-swipercard transition-shadow ease-linear duration-200 p-5' >
+            <SwiperSlide key={index}>
+              <div className='rounded-lg hover:shadow-swipercard transition-shadow ease-linear duration-200 xl:p-5 p-3' >
                 <Image src={item.img} alt='imageprofile' className='rounded-full mx-auto' width={93} height={93} />
 
                 <Description className='mb-[11.9px] text-center mt-4  relative'>
@@ -84,7 +88,7 @@ const OurClients: React.FC = () => {
                   <Image src={quotationmarks} alt='img' className='absolute bottom-0 rotate-180 right-[50px]' />
                 </Description>
                 <div>
-                  <Image src={stars} alt='stars' width={192} height={32} className='mx-auto' />
+                  <Image src={stars} alt='stars'   className='mx-auto ' />
                   <h4 className='font-semibold text-[20px] text-center text-dark-blue mt-2.5'>
                     {item.name}
                   </h4>

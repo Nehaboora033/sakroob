@@ -5,6 +5,7 @@ import './globals.css';
 import { AuthProvider } from "@/context/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import LayoutClient from "@/components/Layoutclient";
+import { CartProvider } from "./cart/CartContext";
 
 
 const montserrat = Montserrat({
@@ -31,11 +32,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${montserrat.variable} font-sans`}>
         <AuthProvider>
-          <ProtectedRoute>
-            <LayoutClient>
-              {children}
-            </LayoutClient>
-          </ProtectedRoute>
+          <CartProvider>
+            <ProtectedRoute>
+              <LayoutClient>
+                {children}
+              </LayoutClient>
+            </ProtectedRoute>
+          </CartProvider>
         </AuthProvider>
       </body>
     </html>

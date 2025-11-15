@@ -9,7 +9,7 @@ import cables from '../../assets/png/cables.png'
 import gaming from '../../assets/png/gamming.png'
 import raspberry from '../../assets/png/raspberry.png'
 
-const PopularProducts: React.FC = () => {
+const ShopPopularProducts: React.FC = () => {
   return (
     <div className='max-w-[1396px] px-3 mx-auto'>
       <Description className='text-center'>
@@ -24,7 +24,7 @@ const PopularProducts: React.FC = () => {
             <SubHeading className='text-[32px]! max-w-[172px]'>
               Sensors & Modules
             </SubHeading>
-            <Image src={sensors} alt="Sensors & Modules" className='' height={261} width={440} />
+            <Image src={sensors} alt="Sensors & Modules" className='w-auto h-auto' height={261} width={440}  />
           </div>
           <div className='grid grid-cols-2 gap-6'>
             <div className='cable-bg pt-8 text-center flex items-center flex-col justify-between rounded-lg'>
@@ -68,4 +68,4 @@ const PopularProducts: React.FC = () => {
   )
 }
 
-export default PopularProducts
+export default ShopPopularProducts

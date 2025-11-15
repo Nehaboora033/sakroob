@@ -20,11 +20,16 @@ const FooterCard: React.FC = () => {
             <Description className='text-center text-white! mb-[46px] '>
               Exclusive drops, early access, and maker tips in your inbox.
             </Description>
-            <Input name='emial' placeholder='Enter your email....' type='emial' className='h-[68px] '>
-            <Button className='bg-dark-blue text-white '>
-              Join Now
-            </Button>
-            </Input>
+            <div className='flex flex-col gap-4'>
+              <Input name='emial' placeholder='Enter your email....' type='emial' className='min-[450px]:h-[68px] '>
+                <Button className='bg-dark-blue text-white max-[450px]:hidden block'>
+                  Join Now
+                </Button>
+              </Input>
+              <Button className='bg-dark-blue text-white max-[450px]:block hidden h-[54px]'>
+                Join Now
+              </Button>
+            </div>
           </div>
         </div>
       </Container>

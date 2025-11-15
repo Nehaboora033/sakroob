@@ -10,7 +10,7 @@ export default function LayoutClient({ children }: { children: React.ReactNode }
 
     return (
         <>
-            {!isAuthPage && <Header />}
+            {/* {!isAuthPage && <Header />} */}
             {children}
             {!isAuthPage && <Footer />}
         </>
