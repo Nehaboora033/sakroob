@@ -10,9 +10,10 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import stars from '../../assets/png/star-rating.png'
 import 'swiper/css';
 import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import quotationmarks from '../../assets/png/quotation marks.png'
 import { SwiperArrow } from '@/Utils/icons'
-import { Navigation } from 'swiper/modules'
+import { Navigation, Pagination } from 'swiper/modules'
 
 interface ClientsDetailsProps {
   data: string;
@@ -67,7 +68,11 @@ const OurClients: React.FC = () => {
         </button>
         <Swiper
           spaceBetween={20}
-          modules={[Navigation]}
+          modules={[Navigation, Pagination]}
+          pagination={{
+            el: ".client-pagination",
+            clickable: true,
+          }}
           navigation={{
             prevEl: '.prevbtn',
             nextEl: '.nextbtn',
@@ -88,7 +93,7 @@ const OurClients: React.FC = () => {
                   <Image src={quotationmarks} alt='img' className='absolute bottom-0 rotate-180 right-[50px]' />
                 </Description>
                 <div>
-                  <Image src={stars} alt='stars'   className='mx-auto ' />
+                  <Image src={stars} alt='stars' className='mx-auto ' />
                   <h4 className='font-semibold text-[20px] text-center text-dark-blue mt-2.5'>
                     {item.name}
                   </h4>
@@ -100,6 +105,7 @@ const OurClients: React.FC = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+        <div className="client-pagination flex justify-center mt-6 md:hidden"></div>
       </Container>
     </div>
   )

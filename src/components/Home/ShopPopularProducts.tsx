@@ -19,48 +19,48 @@ const ShopPopularProducts: React.FC = () => {
         Shop Our Most Popular Products
       </SubHeading>
       <div className='grid grid-cols-1 gap-6'>
-        <div className='grid lg:grid-cols-2 gap-6  h-[335px]'>
-          <div className='blue-bg pl-[62px] flex items-center overflow-hidden rounded-lg '>
-            <SubHeading className='text-[32px]! max-w-[172px]'>
+        <div className='grid lg:grid-cols-2 gap-6  lg:h-[335px] h-auto'>
+          <div className='blue-bg sm:pl-[62px] pl-4 flex items-center overflow-hidden rounded-lg '>
+            <SubHeading className='sm:text-[32px]! text-[24px]! max-w-[172px]'>
               Sensors & Modules
             </SubHeading>
-            <Image src={sensors} alt="Sensors & Modules" className='w-auto h-auto' height={261} width={440}  />
+            <Image src={sensors} alt="Sensors & Modules" className='sm:w-[440px] sm:h-[261px] w-[300px] h-[200px] '  />
           </div>
-          <div className='grid grid-cols-2 gap-6'>
+          <div className='grid sm:grid-cols-2 gap-6'>
             <div className='cable-bg pt-8 text-center flex items-center flex-col justify-between rounded-lg'>
-              <SubHeading className='text-[32px]! max-w-[213px]  mx-auto'>
+              <SubHeading className='sm:text-[32px]! text-[24px]! max-w-[213px]  mx-auto'>
                 Custom PC Parts
               </SubHeading>
               <Image src={customParts} alt='custom parts' />
             </div>
             <div className='grey-bg pt-[46px] flex flex-col justify-between p-3 items-center rounded-lg'>
-              <SubHeading className='text-[32px]! text-center'>
+              <SubHeading className='sm:text-[32px]! text-[24px]! text-center'>
                 DIY Tools
               </SubHeading>
               <Image src={tools} alt='tools' />
             </div>
           </div>
         </div>
-        <div className='grid grid-cols-2 gap-6 '>
-          <div className='grid grid-cols-2 gap-6 h-[335px]'>
+        <div className='grid lg:grid-cols-2 gap-6 '>
+          <div className='grid sm:grid-cols-2  gap-6 lg:h-[335px] '>
             <div className='cable-bg pt-[26px] flex  pr-4 overflow-hidden flex-col relative rounded-lg '>
-              <SubHeading className='text-[32px]!  mx-auto pl-[120px] '>
+              <SubHeading className='sm:text-[32px]! text-[24px]! text-center  mx-auto xl:pl-[120px] '>
                 Cables & Connectors
               </SubHeading>
-              <Image src={cables} alt='cables' className='absolute bottom-0' />
+              <Image src={cables} alt='cables' className='sm:absolute bottom-0' />
             </div>
             <div className='grey-bg pt-[22px] flex flex-col items-center p-5 justify-between rounded-lg'>
-              <SubHeading className='text-[32px]! max-w-[241px] mx-auto text-center'>
+              <SubHeading className='sm:text-[32px]! text-[24px]! max-w-[241px] mx-auto text-center'>
                 Gaming Peripherals
               </SubHeading>
               <Image src={gaming} alt='gaming' />
             </div>
           </div>
-          <div className='blue-bg pt-[59px] overflow-hidden h-[335px] rounded-lg '>
-            <SubHeading className='text-[32px]!  text-center'>
+          <div className='blue-bg pt-[59px] overflow-hidden h-[335px] rounded-lg  '>
+            <SubHeading className='sm:text-[32px]! text-[24px]!  text-center'>
               Raspberry Pi Kits
             </SubHeading>
-            <Image src={raspberry} alt='raspberry' className='mt-auto w-[680px]  h-[235px] ' />
+            <Image src={raspberry} alt='raspberry' className='mt-auto lg:w-[680px] w-full h-[235px] max-sm:translate-y-2.5 ' />
           </div>
         </div>
       </div>
