@@ -81,7 +81,7 @@ const Blogs: React.FC = () => {
                   className={
                     index === 0
                       ? 'max-w-[407px]'
-                      : 'max-w-[360px] flex flex-col justify-center -translate-y-[50px]'
+                      : 'max-w-[360px] flex flex-col justify-center max-[550px]:-translate-y-[50px]'
                   } >
                   <SubHeading className="min-[550px]:text-[32px]! text-[24px]! mb-3">{item.title}</SubHeading>
                   <Description className="sm:mb-7 mb-3">{item.description}</Description>

@@ -45,7 +45,7 @@ const SearchBar: React.FC = () => {
     }, [charIndex, isDeleting, wordIndex, words]);
 
     return (
-        <div className="relative w-[488px]">
+        <div className="relative sm:w-[488px] w-[305px]">
             <Input
                 type="search"
                 name="search"

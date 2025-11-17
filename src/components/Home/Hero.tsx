@@ -103,7 +103,7 @@ export const Hero_Services: ServiceProps[] = [
 const Hero: React.FC = () => {
   return (
     <>
-      <div>
+      <div >
         <Swiper
           spaceBetween={16}
           // slidesPerView={6.5}
@@ -149,26 +149,11 @@ const Hero: React.FC = () => {
         </Swiper>
       </div>
       <HeroSwiper />
-
       {/*----------- services section ------------*/}
-      <div className='md:pb-48 max-w-[1380px] mx-auto px-3 pt-[67px]'>
-        <div className='bg-light-blue py-[43px] px-[72px] flex gap-9 mt-6 flex-wrap '>
+      <div className='md:pb-48 pb-[140px] max-w-[1380px] mx-auto px-3 pt-[67px]'>
+        <div className='bg-light-blue md:py-[43px] md:px-[72px] p-[30px] grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 min-[500px]:grid-cols-2 justify-center  gap-9 mt-6 '>
           {Hero_Services.map((item, index) => (
-            <div className={`w-fit  flex items-center gap-1.5  ${index !== Hero_Services.length - 1 ? 'pr-5' : 'p-0'
-              }`}
-              style={
-                index !== Hero_Services.length - 1
-                  ? {
-                    borderRight: '1px solid',
-                    borderImageSource:
-                      'linear-gradient(180deg, rgba(17, 45, 73, 0) 0%, #112D49 50%, rgba(17, 45, 73, 0) 100%)',
-                    borderImageSlice: 1,
-                    borderImageWidth: 1,
-                    borderImageOutset: 0,
-                    borderImageRepeat: 'stretch',
-                  }
-                  : {}
-              } key={index}>
+            <div className={`w-fit  flex items-center gap-1.5`} key={index}>
               <div className='bg-sky-blue rounded-full flex items-center justify-center size-[47px] shrink-0'>
                 <item.svg />
               </div>
@@ -184,39 +169,6 @@ const Hero: React.FC = () => {
           ))}
         </div>
       </div>
-
-
-
-      {/* <div className='md:pb-48 max-w-[1380px] mx-auto px-3 pt-[67px]'>
-        <div className='bg-light-blue py-[43px] px-[72px] mt-6 flex gap-5 flex-wrap  min-[1328px]:justify-center'>
-          {Hero_Services.map((item, index) => (
-            <div className='flex flex-col items-center gap-1.5 min-[580px]:w-fit w-full' key={index}>
-              <div className='bg-sky-blue rounded-full flex items-center justify-center size-[47px] shrink-0'>
-                <item.svg />
-              </div>
-              <div>
-                <SubHeading className='text-[16px]! mb-1 whitespace-nowrap '>
-                  {item.title}
-                </SubHeading>
-                <Description className='whitespace-nowrap'>
-                  {item.data}
-                </Description>
-              </div>
-              <div className='w-px h-full pr-4 hidden min-[1328px]:block ' style={
-                {
-                  borderRight: '1px solid',
-                  borderImageSource:
-                    'linear-gradient(180deg, rgba(17, 45, 73, 0) 0%, #112D49 50%, rgba(17, 45, 73, 0) 100%)',
-                  borderImageSlice: 1,
-                  borderImageWidth: 1,
-                  borderImageOutset: 0,
-                  borderImageRepeat: 'stretch',
-                }}>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div> */}
     </>
   )
 }

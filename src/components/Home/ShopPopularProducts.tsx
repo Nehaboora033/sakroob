@@ -19,7 +19,7 @@ const ShopPopularProducts: React.FC = () => {
         Shop Our Most Popular Products
       </SubHeading>
       <div className='grid grid-cols-1 gap-6'>
-        <div className='grid grid-cols-2 gap-6  h-[335px]'>
+        <div className='grid lg:grid-cols-2 gap-6  h-[335px]'>
           <div className='blue-bg pl-[62px] flex items-center overflow-hidden rounded-lg '>
             <SubHeading className='text-[32px]! max-w-[172px]'>
               Sensors & Modules

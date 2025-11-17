@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from '../../assets/png/header-logo.png'
 import Image from 'next/image'
 import Link from 'next/link';
@@ -8,6 +8,9 @@ import Dropdown from './Dropdown';
 import profile from '../../assets/png/customerprofile.png'
 import SearchBar from './SearchBar';
 import { useCart } from '@/app/cart/CartContext';
+import logo2 from '../../assets/png/logo-2.png'
+import { Squash as Hamburger } from 'hamburger-react'
+import Button from './Button';
 
 interface NavlinksProps {
   name: string;
@@ -66,16 +69,41 @@ export const DropDown_Data: DropdownItem[] = [
 ];
 
 const Header: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const { cart } = useCart();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div>
-      <div className='bg-dark-blue h-20 '>
+    <div className={`fixed top-0 z-20  w-full ${isScrolled ? "fixed top-0 left-0 shadow-lg" : ""}`}>
+      <div className='bg-dark-blue xl:h-20 h-[85px] '>
         <div className='max-w-[1396px] mx-auto px-3 flex justify-between items-center h-20'>
           <Link href={'/'}>
-            <Image src={logo} alt='logo'
-              className='flex translate-y-[30%] cursor-pointer' />
+            <div className="">
+              {/* Logo for small screens */}
+              <Image
+                src={logo}
+                alt="logo"
+                className="hidden xl:block translate-y-[30px] "
+              />
+
+              {/* Logo for big screens */}
+              <Image
+                src={logo2}
+                alt="logo white"
+                className="block xl:hidden  "
+              />
+            </div>
           </Link>
-          <div className='text-white flex items-center gap-8'>
+          <div className={`text-white flex items-center gap-8 max-xl:flex-col max-xl:items-center z-10 max-xl:justify-center transition-[right] max-xl:fixed max-xl:top-0 duration-800 ease-in-out max-sm:w-full max-xl:w-[75%] max-xl:h-full max-xl:bg-dark-blue ${isOpen ? 'right-0 ' : 'max-xl:-right-full'}`}>
             <Link href={'/'}>
               Categories
             </Link>
@@ -86,7 +114,7 @@ const Header: React.FC = () => {
                 options={item.options}
               />
             ))}
-            <nav className=' flex gap-8'>
+            <nav className=' flex max-xl:flex-col items-center gap-8'>
               {Navlinks_Data.map((item, index) => (
                 <Link href={item.link} key={index}>
                   {item.name}
@@ -94,8 +122,8 @@ const Header: React.FC = () => {
               ))}
             </nav>
           </div>
-          <div className='flex gap-9 items-center '>
-            <div className='flex items-center gap-3.5'>
+          <div className='flex sm:gap-5  gap-3 items-center '>
+            <div className='flex items-center sm:gap-3.5 gap-2'>
               <Profile className='cursor-pointer' />
               <div className='bg-[#D9D9D9] w-px h-8 '></div>
               <Like className='cursor-pointer' />
@@ -110,7 +138,15 @@ const Header: React.FC = () => {
                 )}
               </Link>
             </div>
-            <Image src={profile} alt='profile' className='cursor-pointer' />
+            <Button className='xl:hidden p-0! z-11'>
+              <Hamburger
+                toggled={isOpen}
+                color="#ffffff"
+                toggle={() => setIsOpen(!isOpen)}
+              />
+            </Button>
+
+            <Image src={profile} alt='profile' className={`cursor-pointer xl:block hidden `} />
           </div>
         </div>
       </div>

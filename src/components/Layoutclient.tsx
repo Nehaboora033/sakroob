@@ -10,8 +10,8 @@ export default function LayoutClient({ children }: { children: React.ReactNode }
 
     return (
         <>
-            {/* {!isAuthPage && <Header />} */}
-            {children}
+            {!isAuthPage && <Header/>}
+            <div className="pt-[154px]">{children}</div>
             {!isAuthPage && <Footer />}
         </>
     );
