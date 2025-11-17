@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "firebase": "^12.5.0",
     "hamburger-react": "^2.5.2",
     "lucide-react": "^0.552.0",

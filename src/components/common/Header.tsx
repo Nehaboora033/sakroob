@@ -11,13 +11,13 @@ import { useCart } from '@/app/cart/CartContext';
 import logo2 from '../../assets/png/logo-2.png'
 import { Squash as Hamburger } from 'hamburger-react'
 import Button from './Button';
+import MobileMenu from './MobileMenu';
 
 interface NavlinksProps {
   name: string;
   link: string;
 }
 
-// DropDownData.ts
 export interface DropdownOption {
   name: string;
   link: string;
@@ -29,19 +29,9 @@ export interface DropdownItem {
 }
 
 export const Navlinks_Data: NavlinksProps[] = [
-  {
-    name: 'About',
-    link: '/about',
-  },
-  {
-    name: 'Blog',
-    link: '/blog',
-  },
-  {
-    name: 'Contact',
-    link: '/contact',
-  },
-
+  { name: 'About', link: '/about' },
+  { name: 'Blog', link: '/blog' },
+  { name: 'Contact', link: '/contact' },
 ]
 
 export const DropDown_Data: DropdownItem[] = [
@@ -82,55 +72,57 @@ const Header: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return (
-    <div className={`fixed top-0 z-20  w-full ${isScrolled ? "fixed top-0 left-0 shadow-lg" : ""}`}>
-      <div className='bg-dark-blue xl:h-20 h-[85px] '>
-        <div className='max-w-[1396px] mx-auto px-3 flex justify-between items-center h-20'>
-          <Link href={'/'}>
-            <div className="">
-              {/* Logo for small screens */}
-              <Image
-                src={logo}
-                alt="logo"
-                className="hidden xl:block translate-y-[30px] "
-              />
 
-              {/* Logo for big screens */}
-              <Image
-                src={logo2}
-                alt="logo white"
-                className="block xl:hidden  "
-              />
+  // 🚀 NEW useEffect — stop scrolling
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+  return (
+    <div className={`fixed top-0 z-20 w-full ${isScrolled ? "shadow-lg" : ""}`}>
+      <div className='bg-dark-blue xl:h-20 h-[85px]'>
+        <div className='max-w-[1396px] mx-auto px-3 flex justify-between items-center h-20'>
+
+          {/* LOGO */}
+          <Link href={'/'}>
+            <div>
+              <Image src={logo} alt="logo" className="hidden xl:block translate-y-[30px]" />
+              <Image src={logo2} alt="logo white" className="block xl:hidden" />
             </div>
           </Link>
-          <div className={`text-white flex items-center gap-8 max-xl:flex-col max-xl:items-center z-10 max-xl:justify-center transition-[right] max-xl:fixed max-xl:top-0 duration-800 ease-in-out max-sm:w-full max-xl:w-[75%] max-xl:h-full max-xl:bg-dark-blue ${isOpen ? 'right-0 ' : 'max-xl:-right-full'}`}>
-            <Link href={'/'}>
-              Categories
-            </Link>
+
+          {/* DESKTOP NAV */}
+          <div className="hidden xl:flex items-center gap-8 text-white">
+            <Link href="/">Categories</Link>
+
             {DropDown_Data.map((item, index) => (
-              <Dropdown
-                key={index}
-                placeholder={item.placeholder}
-                options={item.options}
-              />
+              <Dropdown key={index} placeholder={item.placeholder} options={item.options} />
             ))}
-            <nav className=' flex max-xl:flex-col items-center gap-8'>
+
+            <nav className="flex items-center gap-8">
               {Navlinks_Data.map((item, index) => (
-                <Link href={item.link} key={index}>
-                  {item.name}
-                </Link>
+                <Link href={item.link} key={index}>{item.name}</Link>
               ))}
             </nav>
           </div>
-          <div className='flex sm:gap-5  gap-3 items-center '>
+
+          {/* RIGHT ICONS + HAMBURGER */}
+          <div className='flex sm:gap-5 gap-3 items-center'>
             <div className='flex items-center sm:gap-3.5 gap-2'>
               <Profile className='cursor-pointer' />
-              <div className='bg-[#D9D9D9] w-px h-8 '></div>
+              <div className='bg-[#D9D9D9] w-px h-8'></div>
               <Like className='cursor-pointer' />
               <div className='bg-[#D9D9D9] w-px h-8'></div>
+
               <Link href={"/cart"} className="relative">
                 <Cart className="cursor-pointer" />
-
                 {cart.length > 0 && (
                   <span className="absolute -top-2 -right-2 bg-white text-dark-blue text-[12px] rounded-full w-5 h-5 flex items-center justify-center">
                     {cart.reduce((total: number, item) => total + item.quantity, 0)}
@@ -138,25 +130,35 @@ const Header: React.FC = () => {
                 )}
               </Link>
             </div>
+
+            {/* HAMBURGER BUTTON */}
             <Button className='xl:hidden p-0! z-11'>
               <Hamburger
                 toggled={isOpen}
-                color="#ffffff"
+                color={isOpen ? "#112D49" : "#ffffff"}
                 toggle={() => setIsOpen(!isOpen)}
               />
             </Button>
 
-            <Image src={profile} alt='profile' className={`cursor-pointer xl:block hidden `} />
+            <Image src={profile} alt='profile' className="cursor-pointer xl:block hidden" />
           </div>
         </div>
+
+        {/* MOBILE MENU (OVERLAY PANEL) */}
+        <MobileMenu
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          dropDownData={DropDown_Data}
+          navLinksData={Navlinks_Data}
+        />
       </div>
+
+      {/* SEARCH BAR */}
       <div className="bg-[#F1F6FC] h-[74px] flex items-center justify-center">
-        <div className="text-center ">
-          <SearchBar />
-        </div>
+        <SearchBar />
       </div>
     </div>
   )
 }
 
-export default Header
+export default Header;
