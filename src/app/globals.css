@@ -85,3 +85,17 @@ body {
     width: 40px;
     opacity: 1;
 }
+
+.bestseller-pagination .swiper-pagination-bullet {
+    width: 20px;
+    height: 8px;
+    border-radius: 4px;
+    background: #435c76;
+    opacity: 0.5;
+    margin: 0 4px !important;
+}
+
+.bestseller-pagination .swiper-pagination-bullet-active {
+    width: 40px;
+    opacity: 1;
+}

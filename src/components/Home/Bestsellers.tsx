@@ -9,7 +9,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import ratingstars from '../../assets/png/star-rating.png';
 import { ProductCart, SwiperArrow, ProductLike } from '@/Utils/icons';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 import Link from 'next/link';
 import Container from '@/components/common/Container';
 import SubHeading from '@/components/common/SubHeading';
@@ -89,11 +89,15 @@ const Bestsellers: React.FC = () => {
                 <Swiper
                     spaceBetween={24}
 
-                    modules={[Navigation]}
+                    modules={[Navigation,Pagination]}
                     navigation={{
                         prevEl: '.prevbtn1',
                         nextEl: '.nextbtn1',
 
+                    }}
+                    pagination={{
+                        clickable: true,
+                        el: '.bestseller-pagination' // target custom div
                     }}
                     breakpoints={{
                         0: { slidesPerView: 1 },
@@ -155,6 +159,7 @@ const Bestsellers: React.FC = () => {
                         </SwiperSlide>
                     ))}
                 </Swiper>
+                <div className="bestseller-pagination flex justify-center mt-6"></div>
             </Container>
         </div >
     );

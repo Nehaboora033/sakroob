@@ -10,8 +10,8 @@ import SearchBar from './SearchBar';
 import { useCart } from '@/app/cart/CartContext';
 import logo2 from '../../assets/png/logo-2.png'
 import { Squash as Hamburger } from 'hamburger-react'
-import Button from './Button';
 import MobileMenu from './MobileMenu';
+import Button from './Button';
 
 interface NavlinksProps {
   name: string;
@@ -114,7 +114,7 @@ const Header: React.FC = () => {
           </div>
 
           {/* RIGHT ICONS + HAMBURGER */}
-          <div className='flex sm:gap-5 gap-3 items-center'>
+          <div className='flex sm:gap-5 gap-1 items-center'>
             <div className='flex items-center sm:gap-3.5 gap-2'>
               <Profile className='cursor-pointer' />
               <div className='bg-[#D9D9D9] w-px h-8'></div>
@@ -132,14 +132,15 @@ const Header: React.FC = () => {
             </div>
 
             {/* HAMBURGER BUTTON */}
-            <Button className='xl:hidden p-0! z-11'>
+            <div className="xl:hidden z-30">
               <Hamburger
                 toggled={isOpen}
-                color={isOpen ? "#112D49" : "#ffffff"}
-                toggle={() => setIsOpen(!isOpen)}
+                toggle={setIsOpen}
+                color="#ffffff"
+                size={26}
+                duration={0.4}
               />
-            </Button>
-
+            </div>
             <Image src={profile} alt='profile' className="cursor-pointer xl:block hidden" />
           </div>
         </div>

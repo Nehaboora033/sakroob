@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { useCart } from './CartContext';
 import { ShoppingCart } from 'lucide-react';
 import Button from '@/components/common/Button';
+import Cartanimation from '@/components/Cartanimation';
 
 
 const CartPage: React.FC = () => {
@@ -39,6 +40,7 @@ const CartPage: React.FC = () => {
                             <ShoppingCart />
                             Your cart is empty...
                         </p>
+                        <Cartanimation/>
                         <Link href={'/'}>
                             <Button className='bg-dark-blue text-white px-12! w-fit!'>
                                 Explore Products
