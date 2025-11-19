@@ -23,7 +23,7 @@ const CartPage: React.FC = () => {
 
                 {/* ---- PAGE HEADER ---- */}
                 <div className='flex items-center justify-between mb-[52px] pt-[94px] '>
-                    <h3 className='font-bold text-[34px] '>
+                    <h3 className='font-bold sm:text-[34px] text-[20px] '>
                         Your cart
                     </h3>
                     <Link href={'/'} >
@@ -50,7 +50,7 @@ const CartPage: React.FC = () => {
                 ) : (
                     <>
                         {/* ---- TOP HEADER ROW ---- */}
-                        <div className='flex bg-[#F5F5F5] border-b border-[#112D491A] p-5 rounded-tl-lg rounded-tr-lg gap-2'>
+                        <div className='lg:flex  hidden bg-[#F5F5F5] border-b border-[#112D491A] p-5 rounded-tl-lg rounded-tr-lg gap-2'>
                             <div className='w-[40%] text-[18px] font-medium text-dark-blue'>
                                 Product
                             </div>
@@ -67,30 +67,30 @@ const CartPage: React.FC = () => {
 
                         {/* ---- CART ITEMS ---- */}
                         {cart.map((item) => (
-                            <div key={item.id} className='flex items-center bg-[#F4F8F7] p-5 gap-2 '>
+                            <div key={item.id} className='min-[900px]:flex  bg-[#F4F8F7] sm:p-5 p-3 gap-2  '>
 
                                 {/* Product Section */}
-                                <div className='flex items-center gap-6 w-[40%]'>
-                                    <div className='bg-[#E9E9E9] py-[7px] px-5 size-[85px] relative border border-[#00000033] rounded-tl-lg rounded-br-lg flex items-center justify-center'>
+                                <div className='flex items-center gap-6 min-[900px]:w-[40%] w-full justify-between max-[900px]:mb-4'>
+                                    <div className='bg-[#E9E9E9] sm:py-[7px] sm:px-5 px-1 py-1 size-[85px]  relative border border-[#00000033] rounded-tl-lg rounded-br-lg flex items-center justify-center'>
                                         <Image src={item.image} alt={item.title} width={85} height={85} />
                                         <div className='rounded-full bg-[#C7C7C7] absolute size-[34px] -top-3 -right-5 text-dark-blue flex items-center justify-center'>
                                             {item.quantity}
                                         </div>
                                     </div>
 
-                                    <div>
-                                        <h4 className='font-medium text-[20px]'>{item.title}</h4>
-                                        <p className='text-[#8292A0]'>{item.price} AED</p>
+                                    <div className=''>
+                                        <h4 className='font-medium sm:text-[20px] text-[16px]'>{item.title}</h4>
+                                        <p className='text-[#8292A0] sm:text-[16px] text-[14px]'>{item.price} AED</p>
                                     </div>
                                 </div>
 
                                 {/* Quantity + Total */}
-                                <div className='flex items-center w-[60%]'>
-                                    <div className='flex items-center gap-2 w-1/2'>
+                                <div className='flex items-center min-[900px]:w-[60%] w-full '>
+                                    <div className='flex items-center gap-2 w-1/2 '>
                                         <div className='h-11 flex'>
                                             {/* Decrease */}
                                             <button
-                                                className='bg-sky-blue rounded-tl-lg rounded-bl-lg px-[19px] flex items-center cursor-pointer'
+                                                className='bg-sky-blue rounded-tl-lg rounded-bl-lg sm:px-[19px] px-3 flex items-center cursor-pointer'
                                                 onClick={() => {
                                                     if (item.quantity > 1) {
                                                         decreaseQuantity(item.id);
@@ -101,11 +101,11 @@ const CartPage: React.FC = () => {
                                                 <Decrease />
                                             </button>
 
-                                            <div className='border-y px-[31px] text-[20px] flex items-center'>{item.quantity}</div>
+                                            <div className='border-y sm:px-[31px] px-3 text-[20px] flex items-center'>{item.quantity}</div>
 
                                             {/* Increase */}
                                             <button
-                                                className='bg-dark-blue rounded-tr-lg rounded-br-lg px-[19px] flex items-center cursor-pointer'
+                                                className='bg-dark-blue rounded-tr-lg rounded-br-lg sm:px-[19px] px-3 flex items-center cursor-pointer'
                                                 onClick={() =>
                                                     addToCart({ ...item, quantity: 1 })
                                                 }>
@@ -123,7 +123,7 @@ const CartPage: React.FC = () => {
                                     </div>
 
                                     {/* Item Total */}
-                                    <div className='w-1/2 text-[#3E566C]'>
+                                    <div className='w-1/2 text-[#3E566C] max-[900px]:text-end'>
                                         Dhs {(item.price * item.quantity).toFixed(2)}
                                     </div>
                                 </div>
@@ -131,18 +131,18 @@ const CartPage: React.FC = () => {
                         ))}
 
                         {/* ---- BOTTOM TOTAL SUMMARY ---- */}
-                        <div className='flex items-center bg-[#F4F8F7] p-5 rounded-bl-lg rounded-br-lg' style={{
+                        <div className='flex items-center bg-[#F4F8F7] sm:p-5 p-3 rounded-bl-lg rounded-br-lg' style={{
                             borderTop: '1px solid',
                             borderImageSource:
                                 'linear-gradient(90deg, rgba(17, 45, 73, 0) 0%, #112D49 52.88%, rgba(17, 45, 73, 0) 100%)',
                             borderImageSlice: 1,
                         }} >
-                            <div className='w-[40%]'></div>
-                            <div className='w-[60%] flex items-center'>
-                                <div className='w-1/2'></div>
+                            <div className='min-[900px]:block hidden w-[40%] '></div>
+                            <div className='min-[900px]:w-[60%] w-full flex items-center'>
+                                <div className='min-[900px]:block hidden w-1/2 '></div>
 
-                                <div className='w-1/2'>
-                                    <div className='flex justify-between items-center mb-2'>
+                                <div className='min-[900px]:w-1/2 w-full'>
+                                    <div className='flex justify-between items-center mb-2 gap-2'>
                                         <Description>Estimated total</Description>
                                         <Description className='font-semibold!'>
                                             Dhs {estimatedTotal.toFixed(2)} AED
@@ -153,9 +153,11 @@ const CartPage: React.FC = () => {
                                         Taxes, discounts and shipping calculated at checkout.
                                     </Description>
 
-                                    <Button className='bg-dark-blue text-white w-full max-w-[330px]'>
-                                        Check out
-                                    </Button>
+                                    
+                                        <Button className='bg-dark-blue text-white w-full  max-w-[330px]'>
+                                            Check out
+                                        </Button>
+                                   
                                 </div>
                             </div>
                         </div>

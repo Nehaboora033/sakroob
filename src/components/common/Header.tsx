@@ -11,7 +11,8 @@ import { useCart } from '@/app/cart/CartContext';
 import logo2 from '../../assets/png/logo-2.png'
 import { Squash as Hamburger } from 'hamburger-react'
 import MobileMenu from './MobileMenu';
-import Button from './Button';
+import { useAuth } from "@/context/AuthContext";
+
 
 interface NavlinksProps {
   name: string;
@@ -62,6 +63,12 @@ const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { cart } = useCart();
   const [isScrolled, setIsScrolled] = useState(false);
+  const { user, loading } = useAuth();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -141,7 +148,25 @@ const Header: React.FC = () => {
                 duration={0.4}
               />
             </div>
-            <Image src={profile} alt='profile' className="cursor-pointer xl:block hidden" />
+            {mounted && !loading && (
+              user ? (
+                <Image
+                  src={user.photoURL ?? profile}
+                  alt="user"
+                  width={40}
+                  height={40}
+                  className="w-10 h-10 rounded-full object-cover cursor-pointer xl:block hidden"
+                />
+              ) : (
+                <Image
+                  src={profile}
+                  alt="default profile"
+                  width={40}
+                  height={40}
+                  className="w-10 h-10 rounded-full object-cover cursor-pointer xl:block hidden"
+                />
+              )
+            )}
           </div>
         </div>
 

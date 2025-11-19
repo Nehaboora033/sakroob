@@ -59,12 +59,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
 
     return (
         <div
-            className={`fixed top-0 right-0 h-full w-[40%] bg-white shadow-xl z-50 transition-transform duration-500 
+            className={`fixed top-0 right-0 h-full sm:w-[50%] w-[80%] bg-white shadow-xl z-50 transition-transform duration-500 
             ${isOpen ? "translate-x-0" : "translate-x-full"}`}
             onTransitionEnd={() => {
                 if (!isOpen) setActiveDropdown(null); // reset AFTER animation finishes
-            }}
-        >
+            }} >
             {/* HEADER */}
             <div className="flex items-center justify-between p-4 bg-black border-b">
                 <p className="font-semibold text-white text-[24px]">Menu</p>

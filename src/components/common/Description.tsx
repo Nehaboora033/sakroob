@@ -10,7 +10,7 @@ const Description: React.FC<DescriptionProps> = ({ className = '', children, ...
   return (
     <h3
       {...props}
-      className={`${className} font-normal text-[16px]  text-darkblue leading-[150%]`}>
+      className={`${className} font-normal sm:text-[16px]  text-[14px] text-darkblue leading-[150%]`}>
       {children}
     </h3>
   )
