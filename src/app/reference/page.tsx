@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ReferencePage = () => {
+const ReferencePage:React.FC = () => {
   return (
     <div>Reference page</div>
   )

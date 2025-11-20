@@ -26,7 +26,7 @@ export const Tabsname: TabsProps[] = [
 
 ]
 
-const Review = () => {
+const Review:React.FC = () => {
   return (
     <div className='sm:pt-[60px] '>
       <Container className=''>

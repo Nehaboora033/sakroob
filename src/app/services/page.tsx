@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ServicesPage = () => {
+const ServicesPage:React.FC = () => {
   return (
     <div>Services page</div>
   )

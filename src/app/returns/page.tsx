@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ReturnPage = () => {
+const ReturnPage:React.FC = () => {
   return (
     <div>Retuens page</div>
   )
