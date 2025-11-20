@@ -34,7 +34,7 @@ const Searchpage: React.FC = () => {
                 <p>No products found.</p>
             )}
 
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="grid min-[550px]:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filtered.map(product => (
                     <div className={`border  border-[#112D4914] rounded-lg h-[536px]  p-4 flex flex-col gap-5 shadow-model`} key={product.id}>
                         <div className={`h-1/2  rounded-lg flex justify-center relative  bg-light-blue`}>
@@ -52,8 +52,8 @@ const Searchpage: React.FC = () => {
                                     Commodo egestas etiam arcu curabitur aliquam volutpat a gravida.
                                 </Description>
                             </div>
-                            <div className='flex justify-betwee flex-col gap-[25px] '>
-                                <div className='flex items-center justify-between '>
+                            <div className='flex justify-between flex-col  '>
+                                <div className='flex items-center justify-between mb-2 '>
                                     <h4 className='font-semibold sm:text-[24px] text-[16px]'>
                                         {`$${product.price}`}
                                     </h4>
@@ -61,7 +61,7 @@ const Searchpage: React.FC = () => {
                                 </div>
                                 <div className='flex justify-between items-center '>
                                     <Link href={`/products/${product.id}`}>
-                                        <Button className='border w-[180px]'>
+                                        <Button className='border '>
                                             Shop Now
                                         </Button>
                                     </Link>
