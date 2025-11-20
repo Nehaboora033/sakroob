@@ -1,5 +1,4 @@
 'use client';
-
 import { usePathname } from "next/navigation";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
@@ -10,8 +9,12 @@ export default function LayoutClient({ children }: { children: React.ReactNode }
 
     return (
         <>
-            {!isAuthPage && <Header/>}
-            <div className="pt-[154px]">{children}</div>
+            {!isAuthPage && <Header />}
+
+            <div className={!isAuthPage ? "pt-[154px]" : ""}>
+                {children}
+            </div>
+
             {!isAuthPage && <Footer />}
         </>
     );

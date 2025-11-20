@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import Input from './Input';
 import { Search } from '@/Utils/icons';
+import { useRouter } from "next/navigation";
 
 const SearchBar: React.FC = () => {
     const words = useMemo(
@@ -9,35 +10,45 @@ const SearchBar: React.FC = () => {
         []
     );
 
+    const router = useRouter();
     const [placeholder, setPlaceholder] = useState('');
+    const [searchValue, setSearchValue] = useState('');  // 🔥 required
     const [wordIndex, setWordIndex] = useState(0);
     const [charIndex, setCharIndex] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
+
+
+    const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            if (!searchValue.trim()) return;
+
+            router.push(`/search?query=${searchValue.toLowerCase()}`);
+
+            // ⬇️ Clear the input after navigating
+            setSearchValue("");
+        }
+    };
 
     useEffect(() => {
         const currentWord = words[wordIndex];
         let timeout: NodeJS.Timeout;
 
         if (!isDeleting && charIndex < currentWord.length) {
-            // Typing animation
             timeout = setTimeout(() => {
-                setCharIndex((prev) => prev + 1);
+                setCharIndex(charIndex + 1);
                 setPlaceholder(currentWord.slice(0, charIndex + 1));
             }, 150);
         } else if (!isDeleting && charIndex === currentWord.length) {
-            // Wait before deleting
             timeout = setTimeout(() => setIsDeleting(true), 1500);
         } else if (isDeleting && charIndex > 0) {
-            // Deleting animation
             timeout = setTimeout(() => {
-                setCharIndex((prev) => prev - 1);
+                setCharIndex(charIndex - 1);
                 setPlaceholder(currentWord.slice(0, charIndex - 1));
             }, 100);
         } else if (isDeleting && charIndex === 0) {
-            // Move to next word
             timeout = setTimeout(() => {
                 setIsDeleting(false);
-                setWordIndex((prev) => (prev + 1) % words.length);
+                setWordIndex((wordIndex + 1) % words.length);
             }, 500);
         }
 
@@ -50,9 +61,12 @@ const SearchBar: React.FC = () => {
                 type="search"
                 name="search"
                 placeholder={placeholder}
-                className="w-full border border-[#112D491A] shadow-swipercard pr-10"
+                value={searchValue}           // ✔ controlled input
+                onChange={(e) => setSearchValue(e.target.value)}   // ✔ update value
+                className="w-full border border-[#112D491A] shadow-swipercard pr-14"
+                onKeyDown={handleSearch}
             />
-            <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" />
+            <Search className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-500" />
         </div>
     );
 };

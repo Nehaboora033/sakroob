@@ -5,6 +5,7 @@ import Description from '../common/Description'
 import { Facebook, Instagram, Twitter, YouTube } from '@/Utils/icons'
 import Link from 'next/link'
 import Container from './Container'
+import { usePathname } from 'next/navigation'
 
 
 interface SocialsProps {
@@ -62,9 +63,11 @@ export const Social_Links: SocialsProps[] = [
 ]
 const Footer: React.FC = () => {
 
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const year = new Date().getFullYear();
   return (
-    <div className='bg-dark-blue pt-[217px]'>
+    <div className={`bg-dark-blue ${isHome ? 'pt-[217px]' : 'pt-10'} `}>
       <Container className=''>
         <div className='flex flex-col gap-6 pb-[82px] items-center'>
           <Link href={'/'}>

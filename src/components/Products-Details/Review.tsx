@@ -28,31 +28,35 @@ export const Tabsname: TabsProps[] = [
 
 const Review = () => {
   return (
-    <div className='pt-[60px] '>
+    <div className='sm:pt-[60px] '>
       <Container className=''>
         <Tabs>
           <div className="relative">
-            {/* Base bottom line (light color) */}
-            <div className="absolute bottom-0 left-0 w-full shadow-tabs border-b-8 border-cable-bg rounded-lg "></div>
-            {/* Tabs */}
-            <TabList className="grid grid-cols-3 relative z-10 mb-[34px]">
-              {Tabsname.map((item, index) => (
-                <Tab
-                  key={index}
-                  className="cursor-pointer font-medium text-[24px] text-dark-blue leading-[100%] py-[19px] px-9 text-center transition-all duration-300  outline-none focus:outline-none"
-                  selectedClassName="text-dark-blue relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[8px] after:bg-dark-blue after:rounded-lg" >
-                  {item.tab}
-                </Tab>
-              ))}
-            </TabList>
+            {/* Base bottom line */}
+            <div className="absolute bottom-0 left-0 w-full shadow-tabs border-b-8 border-cable-bg rounded-lg"></div>
+
+            {/* Scrollable Tabs on small screens */}
+            <div className="overflow-x-auto whitespace-nowrap no-scrollbar sm:overflow-visible">
+              <TabList className="flex sm:grid sm:grid-cols-3 relative z-10 mb-[34px]">
+                {Tabsname.map((item, index) => (
+                  <Tab
+                    key={index}
+                    className="cursor-pointer font-medium sm:text-[24px] text-[20px] text-dark-blue leading-[100%] sm:py-[19px] py-3 px-5 sm:px-9 text-center transition-all duration-300 outline-none focus:outline-none"
+                    selectedClassName="text-dark-blue relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full  after:h-[8px] after:bg-dark-blue after:rounded-lg"
+                  >
+                    {item.tab}
+                  </Tab>
+                ))}
+              </TabList>
+            </div>
           </div>
 
           <TabPanel>
-            <div className='shadow-reviewbox p-6'>
+            <div className='shadow-reviewbox sm:p-6 p-3'>
               <div className='flex items-center gap-4 mb-4'>
-                <Image src={profileimg} alt='' className='size-[66px] rounded-full' />
+                <Image src={profileimg} alt='profile' className='sm:size-[66px] size-[50px] rounded-full' />
                 <div >
-                  <div className='flex items-center gap-2 mb-2'>
+                  <div className='flex items-center gap-2 mb-2 justify-between'>
                     <div className='flex'>
                       <StarYellow />
                       <StarYellow />
@@ -65,7 +69,7 @@ const Review = () => {
                     </p>
                   </div>
                   <div>
-                    <SubHeading className='text-[20px]!'>
+                    <SubHeading className='sm:text-[20px]! text-[20px]!'>
                       Kathryn Murphy
                     </SubHeading>
                   </div>

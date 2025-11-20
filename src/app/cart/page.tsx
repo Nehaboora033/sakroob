@@ -70,7 +70,7 @@ const CartPage: React.FC = () => {
                             <div key={item.id} className='min-[900px]:flex  bg-[#F4F8F7] sm:p-5 p-3 gap-2  '>
 
                                 {/* Product Section */}
-                                <div className='flex items-center gap-6 min-[900px]:w-[40%] w-full justify-between max-[900px]:mb-4'>
+                                <div className='flex items-center gap-6 min-[900px]:w-[40%] w-full max-[900px]:justify-between max-[900px]:mb-4'>
                                     <div className='bg-[#E9E9E9] sm:py-[7px] sm:px-5 px-1 py-1 size-[85px]  relative border border-[#00000033] rounded-tl-lg rounded-br-lg flex items-center justify-center'>
                                         <Image src={item.image} alt={item.title} width={85} height={85} />
                                         <div className='rounded-full bg-[#C7C7C7] absolute size-[34px] -top-3 -right-5 text-dark-blue flex items-center justify-center'>

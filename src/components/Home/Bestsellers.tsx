@@ -22,6 +22,7 @@ interface BestsellerProps {
     price: number;
     model: StaticImageData;
     id: number;
+    category: string;
 }
 
 export const Bestseller_Data: BestsellerProps[] = [
@@ -31,6 +32,7 @@ export const Bestseller_Data: BestsellerProps[] = [
         price: 249.99,
         model: gamingpc,
         id: 1,
+        category: "pc",
 
     },
     {
@@ -38,6 +40,7 @@ export const Bestseller_Data: BestsellerProps[] = [
         price: 200.99,
         model: router,
         id: 2,
+        category: "router",
 
     },
     {
@@ -45,27 +48,30 @@ export const Bestseller_Data: BestsellerProps[] = [
         price: 300.99,
         model: chair,
         id: 3,
-
+        category: "chair",
     },
     {
-        title: 'Vortex Gaming PC',
-        price: 249.99,
+        title: 'Gaming PC',
+        price: 299.99,
         model: gamingpc,
         id: 4,
+        category: "pc",
 
     },
     {
-        title: 'D-Link ADSL Wireless Router DSL2790U',
-        price: 200.99,
+        title: 'D Wireless Router DSL2790U',
+        price: 234.99,
         model: router,
         id: 5,
+        category: "router",
 
     },
     {
-        title: 'Gaming Chair',
-        price: 300.99,
+        title: 'Gaming PLO Chair',
+        price: 600.99,
         model: chair,
         id: 6,
+        category: "chair",
 
     },
 ];
@@ -89,7 +95,7 @@ const Bestsellers: React.FC = () => {
                 <Swiper
                     spaceBetween={24}
 
-                    modules={[Navigation,Pagination]}
+                    modules={[Navigation, Pagination]}
                     navigation={{
                         prevEl: '.prevbtn1',
                         nextEl: '.nextbtn1',
@@ -118,7 +124,7 @@ const Bestsellers: React.FC = () => {
                                 </div>
                                 <div className='h-1/2 flex flex-col justify-between'>
                                     <div className=''>
-                                        <SubHeading className='text-2xl! mb-2'>
+                                        <SubHeading className='sm:text-2xl! text-[20px]! mb-2'>
                                             {item.title}
                                         </SubHeading>
                                         <Description>
@@ -134,7 +140,7 @@ const Bestsellers: React.FC = () => {
                                         </div>
                                         <div className='flex justify-between items-center '>
                                             <Link href={`/products/${item.id}`}>
-                                                <Button className='border'>
+                                                <Button className='border w-[180px]'>
                                                     Shop Now
                                                 </Button>
                                             </Link>

@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from "react";
+import { useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Container from "@/components/common/Container";
@@ -7,6 +7,7 @@ import SubHeading from "@/components/common/SubHeading";
 import Description from "@/components/common/Description";
 import Review from "@/components/Products-Details/Review";
 import { Bestseller_Data } from "@/components/Home/Bestsellers";
+import { Popular_Data } from "@/components/Products-Details/PopularProductsReview";
 import Button from "@/components/common/Button";
 import starrating from '../../../assets/png/star-rating.png'
 import { Decrease, Increase } from "@/Utils/icons";
@@ -18,8 +19,9 @@ export default function ProductDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
 
-  const product = Bestseller_Data.find((item) => item.id === Number(slug));
+  const allProducts = [...Bestseller_Data, ...Popular_Data];
 
+  const product = allProducts.find((item) => item.id === Number(slug));
   // 🧩 Quantity state
   const [quantity, setQuantity] = useState(1);
 
@@ -48,14 +50,14 @@ export default function ProductDetailPage() {
           <Image
             src={product.model}
             alt={product.title}
-            width={400}
+            width={250}
             height={400}
-            className="rounded-lg"
+            className="rounded-lg "
           />
         </div>
 
         <div className="flex-1">
-          <SubHeading className="text-[34px]! mb-4">
+          <SubHeading className="sm:text-[34px]! text-[28px]! mb-4">
             {product.title}
           </SubHeading>
           <Description className="mb-4">
@@ -66,7 +68,7 @@ export default function ProductDetailPage() {
           </Description>
 
           {/* 💰 Dynamic total price */}
-          <h3 className="text-2xl font-semibold mb-5">
+          <h3 className="sm:text-2xl text-[20px] font-semibold sm:mb-5 mb-3">
             ${totalPrice}
           </h3>
 
@@ -93,13 +95,13 @@ export default function ProductDetailPage() {
 
           {/* 🛒 Buttons */}
           <div className="flex gap-3">
-            <Button className="bg-dark-blue text-white rounded-full w-full">
+            <Button className="bg-dark-blue text-white rounded-full min-[450px]:w-[200px]">
               Shop Now
             </Button>
 
-            <Link href={"/cart"} className="w-full">
+            <Link href={"/cart"} className="">
               <Button
-                className="text-dark-blue border border-dark-blue w-full rounded-full"
+                className="text-dark-blue border border-dark-blue  rounded-full min-[450px]:w-[200px]"
                 onClick={() =>
                   addToCart({
                     id: product.id,

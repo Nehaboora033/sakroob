@@ -153,17 +153,17 @@ const Header: React.FC = () => {
                 <Image
                   src={user.photoURL ?? profile}
                   alt="user"
-                  width={40}
-                  height={40}
-                  className="w-10 h-10 rounded-full object-cover cursor-pointer xl:block hidden"
+                  width={33}
+                  height={33}
+                  className=" rounded-full object-cover cursor-pointer xl:block hidden"
                 />
               ) : (
                 <Image
                   src={profile}
                   alt="default profile"
-                  width={40}
-                  height={40}
-                  className="w-10 h-10 rounded-full object-cover cursor-pointer xl:block hidden"
+                  width={33}
+                  height={33}
+                  className=" rounded-full object-cover cursor-pointer xl:block hidden"
                 />
               )
             )}

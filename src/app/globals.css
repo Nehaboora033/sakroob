@@ -99,3 +99,18 @@ body {
     width: 40px;
     opacity: 1;
 }
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.no-scrollbar {
+    scrollbar-width: none;
+}
+
+/* Remove default clear (X) button in search inputs */
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
