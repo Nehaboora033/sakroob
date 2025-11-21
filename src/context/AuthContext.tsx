@@ -6,47 +6,28 @@ import { auth } from "@/firebase/firebaseConfig";
 interface AuthContextType {
     user: User | null;
     loading: boolean;
-    logout: () => Promise<void>;   // <-- add logout type
+    logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
     user: null,
     loading: true,
-    logout: async () => { },        // <-- default logout placeholder
+    logout: async () => { },
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+    const [user, setUser] = useState<User | null>(null);
+    const [loading, setLoading] = useState(true);  // ALWAYS TRUE
 
-    const [user, setUser] = useState<User | null>(() => {
-        if (typeof window !== "undefined") {
-            const savedUser = localStorage.getItem("user");
-            return savedUser ? JSON.parse(savedUser) : null;
-        }
-        return null;
-    });
-
-    const [loading, setLoading] = useState(!user);
-
-
-    // ✅ REAL LOGOUT FUNCTION
     const logout = async () => {
-        await signOut(auth);          // Firebase logout
-        localStorage.clear();         // remove stored data
-        setUser(null);                // reset user
+        await signOut(auth);
+        setUser(null);
     };
 
-
-    // 🔄 Listen to Firebase auth changes
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            if (currentUser) {
-                localStorage.setItem("user", JSON.stringify(currentUser));
-                setUser(currentUser);
-            } else {
-                localStorage.removeItem("user");
-                setUser(null);
-            }
-            setLoading(false);
+            setUser(currentUser);
+            setLoading(false);    // only stop loading when Firebase finishes
         });
 
         return () => unsubscribe();
