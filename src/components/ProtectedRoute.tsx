@@ -8,22 +8,29 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
     const router = useRouter();
     const pathname = usePathname();
 
-    const publicRoutes = ['/login', '/signup'];
-
     useEffect(() => {
-        if (loading) return;
+        const publicRoutes = ['/login', '/signup'];
 
-        if (!user && !publicRoutes.includes(pathname)) {
-            router.replace('/signup');
-        }
-
-        if (user && publicRoutes.includes(pathname)) {
-            router.replace('/');
+        if (!loading) {
+            if (!user && !publicRoutes.includes(pathname)) {
+                router.replace('/signup');  // IMPORTANT: replace prevents flicker
+            }
+            else if (user && publicRoutes.includes(pathname)) {
+                router.replace('/');
+            }
         }
     }, [user, loading, pathname, router]);
 
-    if (loading) return null;              // wait for Firebase
-    if (!user && !publicRoutes.includes(pathname)) return null;
+    if (loading) {
+        return <div>Loading...</div>; // or a loader component to prevent flickering UI
+    }
+
+    // Block UI until redirect decision is finished
+    const publicRoutes = ['/login', '/signup'];
+
+    if (!user && !publicRoutes.includes(pathname)) {
+        return <div>Loading...</div>;  // Show loader or placeholder
+    }
 
     return <>{children}</>;
 };

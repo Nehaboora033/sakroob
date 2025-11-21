@@ -17,7 +17,7 @@ const AuthContext = createContext<AuthContextType>({
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
-    const [loading, setLoading] = useState(true);  // ALWAYS TRUE
+    const [loading, setLoading] = useState(true);  // Loading state
 
     const logout = async () => {
         await signOut(auth);
@@ -27,11 +27,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
-            setLoading(false);    // only stop loading when Firebase finishes
+            setLoading(false);    // Only stop loading when Firebase finishes
         });
 
         return () => unsubscribe();
     }, []);
+
+    if (loading) {
+        return <div>Loading...</div>; // You can replace this with a loading spinner
+    }
 
     return (
         <AuthContext.Provider value={{ user, loading, logout }}>

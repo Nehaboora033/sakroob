@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { Facebooksignup, Google } from '@/Utils/icons';
 import { useRouter } from 'next/navigation';
 import { auth, googleProvider } from '@/firebase/firebaseConfig';
-import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithPopup, signInWithRedirect } from 'firebase/auth';
 
 const SignPage: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -34,9 +34,8 @@ const SignPage: React.FC = () => {
 
   const handleGoogleSignup = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
-      alert("Logged in with Google successfully!");
-      router.push("/"); // redirect to home or dashboard
+      await signInWithRedirect(auth, googleProvider); // Use redirect instead of popup
+      router.push("/"); // Redirect to the home or dashboard
     } catch (error: unknown) {
       alert((error as Error).message);
     }
