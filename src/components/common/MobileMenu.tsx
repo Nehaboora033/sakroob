@@ -6,8 +6,8 @@ import Link from "next/link";
 import gsap from "gsap";
 import { DropdownItem } from "./Header";
 import { Squash as Hamburger } from "hamburger-react";
-
-
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 export interface NavlinksProps {
     name: string;
@@ -41,7 +41,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
         }
     }, [activeDropdown]);
 
-
+    const { logout } = useAuth();
+    const router = useRouter();
 
     // Reset dropdown when menu closes (safe)
     const handleMenuClose = () => {
@@ -106,6 +107,18 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                         {item.name}
                     </div>
                 ))}
+
+                {/* logout */}
+                <div
+                    onClick={async () => {
+                        await logout();           // Firebase signOut()
+                        handleMenuClose();        // close mobile menu
+                        router.push("/signin");   // redirect to sign-in page
+                    }}
+                    className="pb-3 px-4 cursor-pointer font-semibold" >
+                    Log Out
+                </div>
+
             </div>
 
             {/* SUBMENU */}
