@@ -12,6 +12,7 @@ import logo2 from '../../assets/png/logo-2.png'
 import { Squash as Hamburger } from 'hamburger-react'
 import MobileMenu from './MobileMenu';
 import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 
 interface NavlinksProps {
@@ -63,7 +64,7 @@ const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { cart } = useCart();
   const [isScrolled, setIsScrolled] = useState(false);
-  const { user, loading } = useAuth();
+  const { user, loading, logout } = useAuth();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -79,6 +80,7 @@ const Header: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const router = useRouter();
 
   // 🚀 NEW useEffect — stop scrolling
   useEffect(() => {
@@ -123,7 +125,26 @@ const Header: React.FC = () => {
           {/* RIGHT ICONS + HAMBURGER */}
           <div className='flex sm:gap-5 gap-1 items-center'>
             <div className='flex items-center sm:gap-3.5 gap-2'>
-              <Profile className='cursor-pointer' />
+              <div className="relative group">
+                <div
+                  onClick={async () => {
+                    await logout();
+                    router.push("/signin");
+                  }}
+                >
+                  <Profile className="cursor-pointer" />
+                </div>
+
+                {/* Tooltip */}
+                <span className="
+    absolute left-1/2 -translate-x-1/2 mt-2 
+    text-sm bg-white text-dark-blue px-2 py-1 rounded 
+    opacity-0 group-hover:opacity-100 
+    transition-opacity duration-200 whitespace-nowrap
+  ">
+                  Logout
+                </span>
+              </div>
               <div className='bg-[#D9D9D9] w-px h-8'></div>
               <Like className='cursor-pointer' />
               <div className='bg-[#D9D9D9] w-px h-8'></div>

@@ -7,6 +7,8 @@ import gsap from "gsap";
 import { DropdownItem } from "./Header";
 import { Squash as Hamburger } from "hamburger-react";
 
+
+
 export interface NavlinksProps {
     name: string;
     link: string;
@@ -39,6 +41,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
         }
     }, [activeDropdown]);
 
+
+
     // Reset dropdown when menu closes (safe)
     const handleMenuClose = () => {
         setActiveDropdown(null);
@@ -65,7 +69,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                 if (!isOpen) setActiveDropdown(null); // reset AFTER animation finishes
             }} >
             {/* HEADER */}
-            <div className="flex items-center justify-between p-4 bg-black border-b">
+            <div className="flex items-center justify-between bg-black p-4  border-b">
                 <p className="font-semibold text-white text-[24px]">Menu</p>
 
                 {/* SAME HAMBURGER AS HEADER */}
@@ -73,7 +77,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                     <Hamburger toggled={true} toggle={() => { }} color="#ffffff" size={28} />
                 </button>
             </div>
-
             {/* MAIN MENU */}
             <div className="mt-4 flex flex-col gap-4">
                 {/* Dropdown Sections */}

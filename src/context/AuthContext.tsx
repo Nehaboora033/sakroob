@@ -1,20 +1,22 @@
 'use client';
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { onAuthStateChanged, User } from "firebase/auth";
+import { onAuthStateChanged, signOut, User } from "firebase/auth";
 import { auth } from "@/firebase/firebaseConfig";
 
 interface AuthContextType {
     user: User | null;
     loading: boolean;
+    logout: () => Promise<void>;   // <-- add logout type
 }
 
 const AuthContext = createContext<AuthContextType>({
     user: null,
     loading: true,
+    logout: async () => { },        // <-- default logout placeholder
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-    // ✅ Initialize user directly from localStorage
+
     const [user, setUser] = useState<User | null>(() => {
         if (typeof window !== "undefined") {
             const savedUser = localStorage.getItem("user");
@@ -23,8 +25,18 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         return null;
     });
 
-    const [loading, setLoading] = useState(!user); // only load if no user yet
+    const [loading, setLoading] = useState(!user);
 
+
+    // ✅ REAL LOGOUT FUNCTION
+    const logout = async () => {
+        await signOut(auth);          // Firebase logout
+        localStorage.clear();         // remove stored data
+        setUser(null);                // reset user
+    };
+
+
+    // 🔄 Listen to Firebase auth changes
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             if (currentUser) {
@@ -41,7 +53,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ user, loading }}>
+        <AuthContext.Provider value={{ user, loading, logout }}>
             {children}
         </AuthContext.Provider>
     );
