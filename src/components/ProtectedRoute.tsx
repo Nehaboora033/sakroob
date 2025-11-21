@@ -19,6 +19,11 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
             }
         }
     }, [user, loading, pathname, router]);
+    
+    // 🚫 IMPORTANT: prevent flicker by not rendering UI during loading
+    if (loading) {
+        return null; // or a loader
+    }
 
     return <>{children}</>;
 };
