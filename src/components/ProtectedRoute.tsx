@@ -5,24 +5,31 @@ import { useAuth } from '@/context/AuthContext';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
     const { user, loading } = useAuth();
-    const pathname = usePathname();
     const router = useRouter();
+    const pathname = usePathname();
 
     useEffect(() => {
         const publicRoutes = ['/login', '/signup'];
 
         if (!loading) {
             if (!user && !publicRoutes.includes(pathname)) {
-                router.push('/signup');
-            } else if (user && publicRoutes.includes(pathname)) {
-                router.push('/');
+                router.replace('/signup');  // IMPORTANT: replace prevents flicker
+            }
+            else if (user && publicRoutes.includes(pathname)) {
+                router.replace('/');
             }
         }
     }, [user, loading, pathname, router]);
-    
-    // 🚫 IMPORTANT: prevent flicker by not rendering UI during loading
+
     if (loading) {
-        return null; // or a loader
+        return null;      // prevent UI from rendering
+    }
+
+    // Block UI until redirect decision is finished
+    const publicRoutes = ['/login', '/signup'];
+
+    if (!user && !publicRoutes.includes(pathname)) {
+        return null;   // wait for redirect to finish
     }
 
     return <>{children}</>;

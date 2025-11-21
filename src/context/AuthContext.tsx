@@ -54,8 +54,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <AuthContext.Provider value={{ user, loading, logout }}>
-            {loading ? <p className="text-center mt-20">Loading...</p> : children}
-        </AuthContext.Provider>                   // prevent flicker
+            {children}
+        </AuthContext.Provider>
     );
 };
 
