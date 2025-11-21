@@ -3,34 +3,26 @@ import React, { useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 
-
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
     const { user, loading } = useAuth();
-    const router = useRouter();
     const pathname = usePathname();
+    const router = useRouter();
 
     useEffect(() => {
         const publicRoutes = ['/login', '/signup'];
 
         if (!loading) {
             if (!user && !publicRoutes.includes(pathname)) {
-                router.replace('/signup');  // IMPORTANT: replace prevents flicker
-            }
-            else if (user && publicRoutes.includes(pathname)) {
-                router.replace('/');
+                router.push('/signup');
+            } else if (user && publicRoutes.includes(pathname)) {
+                router.push('/');
             }
         }
     }, [user, loading, pathname, router]);
-
+    
+    // 🚫 IMPORTANT: prevent flicker by not rendering UI during loading
     if (loading) {
-        return <div>Loading...</div>; // or a loader component to prevent flickering UI
-    }
-
-    // Block UI until redirect decision is finished
-    const publicRoutes = ['/login', '/signup'];
-
-    if (!user && !publicRoutes.includes(pathname)) {
-        return <div>Loading...</div>;  // Show loader or placeholder
+        return null; // or a loader
     }
 
     return <>{children}</>;
