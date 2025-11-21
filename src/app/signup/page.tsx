@@ -32,15 +32,10 @@ const SignPage: React.FC = () => {
     }
   };
 
-  const handleGoogleSignup = async () => {
-    try {
-      await signInWithRedirect(auth, googleProvider); // Use redirect instead of popup
-      router.push("/"); // Redirect to the home or dashboard
-    } catch (error: unknown) {
-      alert((error as Error).message);
-    }
-  };
 
+  const handleGoogleSignup = async () => {
+    await signInWithRedirect(auth, googleProvider);
+  };
   return (
     <div
       className="bg-cover bg-center bg-no-repeat h-screen flex items-center justify-center"

@@ -1,7 +1,7 @@
 'use client';
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { onAuthStateChanged, signOut, User } from "firebase/auth";
-import { auth } from "@/firebase/firebaseConfig";
+import { onAuthStateChanged, signOut, User, getRedirectResult } from "firebase/auth";
+import { auth, googleProvider } from "@/firebase/firebaseConfig";
 
 interface AuthContextType {
     user: User | null;
@@ -17,7 +17,7 @@ const AuthContext = createContext<AuthContextType>({
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
-    const [loading, setLoading] = useState(true);  // Loading state
+    const [loading, setLoading] = useState(true);
 
     const logout = async () => {
         await signOut(auth);
@@ -25,17 +25,24 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     useEffect(() => {
+        // 🔥 FOR GOOGLE REDIRECT LOGIN
+        getRedirectResult(auth)
+            .then((result) => {
+                if (result) {
+                    setUser(result.user); // LOGIN SUCCESSFUL!
+                }
+            })
+            .finally(() => setLoading(false));
+
+        // 🔥 LISTEN FOR AUTH STATE
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
-            setLoading(false);    // Only stop loading when Firebase finishes
         });
 
         return () => unsubscribe();
     }, []);
 
-    if (loading) {
-        return <div>Loading...</div>; // You can replace this with a loading spinner
-    }
+    if (loading) return null;
 
     return (
         <AuthContext.Provider value={{ user, loading, logout }}>
